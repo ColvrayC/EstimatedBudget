@@ -4,11 +4,86 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EstimatedBudget.Views"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      xmlns:UC="clr-"
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="BankAccountView">
+      Title="BankAccountView"
+       DataContext="{Binding BankAccount, Source={StaticResource Locator}}">
 
-    <Grid>
-        
+    <Grid Margin="10,20,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ColDatagrid">
+                <ColumnDefinition.Width>
+                    <MultiBinding  Converter="{StaticResource AdaptiveDataGridConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding ElementName="Datagrid" Path="ActualWidth" />
+                            <Binding ElementName="Fiche" Path="ActualWidth"/>
+                            <Binding ElementName="Frame" Path="ActualWidth"/>
+                            <Binding ElementName="Fiche" Path="Visibility"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </ColumnDefinition.Width>
+            </ColumnDefinition>
+            <ColumnDefinition Width="Auto"  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- DATAGRID -->
+        <DataGrid  x:Name="Datagrid" Style="{DynamicResource DataGridStyle}" Grid.Column="0"  Grid.Row="1" Grid.RowSpan="2"  ItemsSource="{Binding BankAccounts}">
+            <DataGridTextColumn Header="Code" Binding="{Binding Path=Code,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            <DataGridTextColumn Header="Libellé" Binding="{Binding Path=Wording,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            <DataGridTextColumn Header="Compte Epargne" Binding="{Binding Path=Investment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        </DataGrid>
+
+        <Grid Name="Fiche"   Grid.Column="1"  Grid.RowSpan="2"  Style="{StaticResource myFicheStyle}" Visibility="{Binding CurrentMode, Converter={StaticResource FicheVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- G1 -->
+            <Grid Style="{StaticResource myFicheStyle}" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Definition du paramétrage de la table " Style="{StaticResource SpecsLabelTitleStyle}" Grid.Row="0" Grid.ColumnSpan="2">
+                    <Run Text="{Binding CurrentTable,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+
+                <TextBlock Grid.Row="1"  Text="Numéro :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Text="{Binding Para_Champ}"  Style="{StaticResource SpecsTextboxStyleNumber}" />
+
+                <!-- Libellé -->
+                <TextBlock Grid.Row="2"  Text="Libellé :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="2" x:Name="Libelle" MaxLength="10" Grid.Column="1" Text="{Binding Para_Nom,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=LostFocus}" Style="{StaticResource SpecsTextboxStyleNumber}"   />
+                <!-- Table -->
+                <TextBlock Grid.Row="3" x:Name="LabelChamp1" Text="Table :" Style="{StaticResource SpecsLabelStyle}"/>
+
+                <Grid Grid.Row="5" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  Name="BtnAnnuler" Command="{Binding CurrentModeCommand}" CommandParameter="DEFAUT"  Style="{StaticResource SpecsButtonAnnuler}"/>
+                    <Button Grid.Column="1"  Command="{Binding ValidatedCommand}" CommandParameter="{Binding ElementName=Datagrid, Path=SelectedIndex}"  Style="{StaticResource SpecsButtonValider}"/>
+                </Grid>
+                <!--END BUTTON FICHE -->
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>

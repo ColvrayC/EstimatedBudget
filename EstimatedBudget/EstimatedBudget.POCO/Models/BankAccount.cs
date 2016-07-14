@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Dapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace EstimatedBudget.POCO.Models
 {
-    class BankAccount
+    public partial class BankAccount
     {
+        public BankAccount()
+        {
+            this.Registration = new HashSet<Registration>();
+        }
+
+        [Dapper.Key]
+        public int Code { get; set; }
+
+        public string Wording { get; set; }
+
+        public bool Investment { get; set; }
+
+        public virtual ICollection<Registration> Registration { get; set; }
     }
+
+
 }

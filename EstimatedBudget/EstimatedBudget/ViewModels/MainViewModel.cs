@@ -13,7 +13,8 @@ namespace EstimatedBudget.ViewModels
         public MainViewModel()
         {
             //Check IF Databse Exist
-            if (!File.Exists(new ConnectionProvider().GetOpenConnection().ConnectionString))
+            var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
+            if (!File.Exists(PathDatabase))
             {
                DataBaseManager.CreateDatabase();
             }

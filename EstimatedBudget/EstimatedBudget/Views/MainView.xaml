@@ -7,7 +7,113 @@
         mc:Ignorable="d"
         Title="MainView" Height="300" Width="300"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <Grid>
-        <Label Content="MAIN OK"/>
+   
+    <!-- PRINCPAL CONTENT -->
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <!-- Contient BorderTop-->
+            <RowDefinition Height="Auto" />
+            <!-- Contient Border Under Top-->
+            <RowDefinition Height="Auto"/>
+            <!-- Contient Frame-->
+            <RowDefinition Height="*"/>
+            <!-- Contient le NAV-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- END PRINCIPAL CONTENT -->
+
+        <!--BORDER TOP -->
+        <Grid Grid.Row="0" Height="40" Visibility="{Binding ShowNav,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <!-- Content Border Top -->
+            <Grid.Background >
+                <SolidColorBrush Color="#1874cd" />
+            </Grid.Background>
+
+          
+
+
+        <!--BORDER UNDER TOP -->
+        <Grid Grid.Row="1" Height="40" Visibility="{Binding ShowNav,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" MinWidth="175" />
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="Gray"/>
+            </Grid.Background>
+            <TextBlock Grid.Column="3"  FontWeight="Bold" FontSize="18" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <Hyperlink Command="{Binding OpenFlyOutEntrepotCommand, Mode=TwoWay}">
+                    <TextBlock Text="{Binding TitleEntrepot,Mode=TwoWay}"/>
+                </Hyperlink>    
+            </TextBlock>
+            <Rectangle Fill="#949494"  IsHitTestVisible="False" Grid.Column="4"/>
+            <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding NavigationName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/>
+
+
+            <Button Width="45" Grid.Column="0" Height="45" Style="{DynamicResource MetroCircleButtonStyle}" Background="#1874cd" Margin="0,0,0,0" VerticalAlignment="Top"
+                    Command="{Binding SelectedFrameCommand}" CommandParameter="../Main/DashBoardView.xaml">
+                <Rectangle Width="20" Height="20" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill"  Visual="{DynamicResource appbar_home}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <!--<Button Grid.Column="1" Width="40" Height="40" Style="{DynamicResource MetroCircleButtonStyle}" Background="#1874cd" 
+                     Command="{Binding NavigateButtonComand}" CommandParameter="Back">
+                <Rectangle Width="17" Height="17" Fill="White" Margin="0,0,3,0">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_navigate_previous}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <Button Grid.Column="2" Width="40" Height="40" Style="{DynamicResource MetroCircleButtonStyle}" Background="#1874cd"
+                     Command="{Binding NavigateButtonComand}" CommandParameter="Forward">
+                <Rectangle Width="17" Height="17" Fill="White" Margin="0,3,0,2">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_navigate_next}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>-->
+            <!--End Content Under Border Top  -->
+        </Grid>
+        <!--END BORDER UNDER TOP -->
+
+
+        <!-- GRID sur la 3ème Ligne du GRID Principale CONTIENT NAV + FRAME-->
+        <Grid  Grid.IsSharedSizeScope="True" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--NAV  Visibility="{Binding ShowNav,Mode=TwoWay}"-->
+            <N:Nav Grid.Column="0" Width="200"  HorizontalAlignment="Left"  Visibility="{Binding ShowNav,Mode=TwoWay}"  />
+            <!-- FRAME-->
+
+            <Grid  Grid.Column="1" Margin="0,0,0,0">
+                <Frame  NavigationUIVisibility="Hidden" Name="ContentFrame" Source="{Binding Main.PathCurrentFrame, Source={StaticResource Locator}, Converter={StaticResource FrameConverter}}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
