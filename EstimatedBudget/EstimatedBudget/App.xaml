@@ -1,0 +1,12 @@
+﻿<Application x:Class="EstimatedBudget.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EstimatedBudget"
+             xmlns:ViewModel="clr-namespace:EstimatedBudget.Helpers"
+             StartupUri="Views/MainView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ViewModel:ViewModelLocator x:Key="Locator"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
