@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EstimatedBudget.Views
+namespace EstimatedBudget.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class MainView : MetroWindow
+    public partial class Menu : ScrollViewer
     {
-        public MainView()
+        public Menu()
         {
             InitializeComponent();
         }

@@ -1,39 +1,79 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System.Windows;
 using EstimatedBudget.POCO;
-using GalaSoft.MvvmLight;
-using System.ComponentModel;
-using System.Data.SQLite;
 using System.IO;
+using EstimatedBudget.Helpers;
 
 namespace EstimatedBudget.ViewModels
 {
-    public partial class MainViewModel : ViewModelBase, IDataErrorInfo
+    public partial class MainViewModel : ViewModelBase
     {
+        /// <summary>
+        ///COMMAND
+        /// </summary>
+        /// ChangeNameFrameCommand
 
+        public RelayCommand<string> EditModeCommand { get; set; }
+
+        public RelayCommand<string> SelectedFrameCommand { get; set; }
+
+
+        /// <summary>
+        ///CONSTRUCTEUR
+        /// </summary>
         public MainViewModel()
         {
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
             if (!File.Exists(PathDatabase))
             {
-               DataBaseManager.CreateDatabase();
+                DataBaseManager.CreateDatabase();
             }
+
+            PathCurrentFrame = "BankAccountView.xaml";
+
+            SelectedFrameCommand = new RelayCommand<string>(SelectedFrame);
+            ShowNav = Visibility.Collapsed;
         }
 
-        public string this[string columnName]
+        /// <summary>
+        /// PROPERTY
+        /// </summary>
+        /// 
+
+        [RaisePropertyChanged]
+        public virtual string DisplayUser { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual double ActualWidth { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual string PathCurrentFrame { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual Visibility ShowNav { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual string NavigationName { get; set; }
+
+        /// <summary>
+        /// METHODES
+        /// </summary>
+        /// 
+
+        private void SelectedFrame(string Path)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            PathCurrentFrame = Path;
+            ShowNav = Visibility.Visible;
         }
 
-        public string Error
+        //CleanUp
+        public override void Cleanup()
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+
+            base.Cleanup();
         }
     }
 }
+

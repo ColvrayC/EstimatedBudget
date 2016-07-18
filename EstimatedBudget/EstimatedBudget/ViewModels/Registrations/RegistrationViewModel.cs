@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstimatedBudget.ViewModels.Category
+namespace EstimatedBudget.ViewModels.Registrations
 {
-    public class CategoryViewModel
+    public class RegistrationViewModel
     {
     }
 }

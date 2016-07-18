@@ -13,6 +13,15 @@
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
+    <Style x:Key="mySpecsStyle" TargetType="{x:Type Grid}">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="MinWidth" Value="415"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Background" Value="{StaticResource AccentBackgroundFiche}"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
     <Style x:Key="SpecsLabelTitleStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Margin" Value="20,20,0,20"/>

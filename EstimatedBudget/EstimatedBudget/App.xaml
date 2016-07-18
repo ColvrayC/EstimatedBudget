@@ -1,23 +1,31 @@
-﻿<Application x:Class="EstimatedBudget.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:EstimatedBudget"
-             xmlns:ViewModel="clr-namespace:EstimatedBudget.Helpers"
-             xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
-             StartupUri="Views/MainView.xaml">
-    <Application.Resources>
-
-        <ResourceDictionary>
-            <!--Contient les tyles par defaut des views ! -->
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/DataGridStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SpecsStyle.xaml"/>
+<Application x:Class="EstimatedBudget.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:EstimatedBudget" 
+             xmlns:ViewModel="clr-namespace:EstimatedBudget.Helpers" 
+             xmlns:Converter="clr-namespace:EstimatedBudget.Converters" 
+             StartupUri="Views/MainView.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    
+  <Application.Resources>
+    <ResourceDictionary>
+      <!--Contient les tyles par defaut des views ! -->
+      <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/GeneralColor.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/DataGridStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/SpecsStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/MenuStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!-- CONVERT -->
-            <Converter:AdaptiveDataGridConverter x:Key="AdaptiveDataGridConverter"/>
-            
-            <ViewModel:ViewModelLocator x:Key="Locator"/>
-        </ResourceDictionary>
-    </Application.Resources>
+        
+      <!-- CONVERT -->
+      <Converter:AdaptiveDataGridConverter x:Key="AdaptiveDataGridConverter" />
+      <Converter:SpecsVisibilityConverter x:Key="SpecsVisibilityConverter" />
+      <Converter:FrameConverter x:Key="FrameConverter" />
+      <ViewModel:ViewModelLocator x:Key="Locator" />
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

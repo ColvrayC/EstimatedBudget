@@ -1,0 +1,61 @@
+﻿<DataGridTemplateColumn x:Class="EstimatedBudget.UserControls.DataGridEditColumn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EstimatedBudget.UserControls"
+             mc:Ignorable="d" 
+             IsReadOnly="True"  CanUserSort="False" CanUserReorder="True" Selector.IsSelected="False" CanUserResize="False" Width="26">
+    <DataGridTemplateColumn.HeaderStyle>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource AccentBackgroundHeader}"/>
+            <Setter Property="Padding" Value="3,0,0,0"/>
+
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <!-- BUTTON AJOUT -->
+                    <DataTemplate>
+                        <Button  Name="BtnImgAdd" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding DataContext.CurrentModeCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="AJOUT" Background="{StaticResource AccentBackgroundHeader}" BorderBrush="{StaticResource AccentBackgroundHeader}" >
+                            <Image Source="pack://application:,,,/Images/EditColumn/IconeAddItem.png"  Name="ImgAdd" Width="15" Height="15"  SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0"/>
+                        </Button>
+
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BtnImgAdd,Path=IsMouseOver}" Value="True" >
+                                <Setter TargetName="ImgAdd" Property="Source" Value="pack://application:,,,/Images/EditColumn/IconeAddHover.png"/>
+                                <Setter TargetName="BtnImgAdd" Property="Background" Value="{StaticResource AccentBackgroundHeader}"/>
+                                <Setter TargetName="BtnImgAdd" Property="BorderThickness" Value="0"/>
+                                <Setter TargetName="BtnImgAdd" Property="BorderBrush" Value="{StaticResource AccentBackgroundHeader}"/>
+                            </DataTrigger>
+
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+
+                </Setter.Value>
+            </Setter>
+            <!-- IsMouseHover BtnAdd-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="{StaticResource AccentBackgroundHeader}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource AccentBackgroundHeader}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </DataGridTemplateColumn.HeaderStyle>
+    <DataGridTemplateColumn.CellTemplate>
+        <!-- BUTTON MODIFICATION-->
+        <DataTemplate>
+            <Button Style="{StaticResource RoundedButtonStyle}" Name="BtnImg" Command="{Binding Path=DataContext.RequestDeleteCommand,RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}"  Background="Transparent" BorderBrush="Transparent">
+                <Image Source="pack://application:,,,/Images/EditColumn/bgtransparent.png" Name="Img" Width="20" Height="20" SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0"/>
+            </Button>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},Path=IsMouseOver}" Value="True">
+                    <Setter TargetName="Img" Property="Source" Value="pack://application:,,,/Images/EditColumn/IconeDelete.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell},Path=IsMouseOver}" Value="True">
+                    <Setter TargetName="Img" Property="Source" Value="pack://application:,,,/Images/EditColumn/IconeDeleteSelected.png"/>
+                </DataTrigger>
+
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </DataGridTemplateColumn.CellTemplate>
+</DataGridTemplateColumn>

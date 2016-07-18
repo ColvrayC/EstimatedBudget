@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:EstimatedBudget.Styles">
+
+    <!--  Menu TextBlock-->
+    <Style x:Key="TitleMenu" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="10,10,0,10" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource AccentForegroundMenu}"/>
+    </Style>
+
+    <!--  Menu Image-->
+    <Style x:Key="ImageMenu" TargetType="{x:Type Image}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="Margin" Value="5" />
+    </Style>
+
+    <!-- Border Space -->
+    <Style x:Key="BorderSpaceMenu" TargetType="{x:Type Border}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="BorderBrush" Value="{StaticResource AccentSpaceMenu}"/>
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="Margin" Value="20,20,0,20"/>
+        <Setter Property="Width" Value="50" />
+        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <!-- BORDER Grid-->
+    <Style x:Key="ItemMenu" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource AccentBackgroundMenu}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Border.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Duration="0:0:0.1"  Storyboard.TargetProperty="Background.Color" To="#1774cd" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Border.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Background.Color" To="#373d4a" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- BORDER SOUS MENU Grid-->
+    <Style x:Key="ItemSousMenu" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource AccentBackgroundMenu}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentSpaceMenu}"/>
+        <Setter Property="BorderThickness" Value="1,0,0,0"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Border.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Duration="0:0:0.1"  Storyboard.TargetProperty="Background.Color" To="#1774cd" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Border.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Background.Color" To="#373d4a" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

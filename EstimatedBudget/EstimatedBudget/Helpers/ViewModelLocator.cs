@@ -1,9 +1,9 @@
 ﻿using EstimatedBudget.ViewModels;
-using EstimatedBudget.ViewModels.BankAccount;
-using EstimatedBudget.ViewModels.Category;
-using EstimatedBudget.ViewModels.Levy;
-using EstimatedBudget.ViewModels.Mode;
-using EstimatedBudget.ViewModels.Registration;
+using EstimatedBudget.ViewModels.BankAccounts;
+using EstimatedBudget.ViewModels.Categories;
+using EstimatedBudget.ViewModels.Levies;
+using EstimatedBudget.ViewModels.Modes;
+using EstimatedBudget.ViewModels.Registrations;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 

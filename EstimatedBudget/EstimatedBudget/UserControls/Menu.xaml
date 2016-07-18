@@ -1,0 +1,187 @@
+﻿<ScrollViewer x:Class="EstimatedBudget.UserControls.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+             xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1"  Height="Auto">
+               <Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ComptaMatiere}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ComptaMatiere}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+        <!-- Menu Premiere Colonne -->
+        <Grid  Background="{StaticResource AccentBackgroundMenu}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="13" />
+            <!--UTILISATEURS -->
+            <Border Grid.Row="0" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Users.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Analyzes" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Style="{StaticResource BorderSpaceMenu}"/>
+
+            <!-- COMPTA MATIERE -->
+            <Border x:Name="ComptaMatiere" Grid.Row="2" Style="{StaticResource ItemMenu}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Compta Matière.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Enregistrements" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <!--EDITIONS -->
+            <Border Grid.Row="3" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Editions.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Prélèvements" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <!--TRAITEMENT PERIODE -->
+            <Border Grid.Row="4" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Traitement Période.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Catégories" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <!-- FICHIERS DE BASE -->
+            <Border Grid.Row="5" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Fichiers de Base.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Comptes Bancaires" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <!-- PARAMETRAGE -->
+            <Border Grid.Row="6" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Parametrages.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Paramétrages" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="7" Style="{StaticResource BorderSpaceMenu}"/>
+
+            <!--FICHIERS -->
+            <Border Grid.Row="8" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Fichiers.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Fichiers" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <!--IMPRESSIONS -->
+            <Border Grid.Row="9" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Impressions.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Imprimer" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="10" Style="{StaticResource BorderSpaceMenu}"/>
+
+            <!--KEY -->
+            <Border Grid.Row="11" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/Configuration.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Configuration" Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+            <!--KEY -->
+            <Border Grid.Row="12" Style="{StaticResource ItemMenu}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Images/Menu/License.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="License..." Style="{StaticResource TitleMenu}"/>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+    </Grid>
+</ScrollViewer>
+

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstimatedBudget.ViewModels.BankAccount
+namespace EstimatedBudget.ViewModels.Levies
 {
-    public class BankAccountViewModel
+    public class LevyViewModel
     {
     }
 }
