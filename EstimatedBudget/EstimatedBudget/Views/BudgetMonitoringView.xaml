@@ -1,0 +1,21 @@
+﻿<Page x:Class="EstimatedBudget.Views.BudgetMonitoringView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+      xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
+      xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
+      xmlns:local="clr-namespace:EstimatedBudget.Views"
+      Title="BudgetMonitoringView"
+      x:Name="Frame"
+      Background="{StaticResource AccentBackgroundColorFrame}"  
+      DataContext="{Binding Category, Source={StaticResource Locator}}"
+      dialogs:DialogParticipation.Register="{Binding}">
+
+    <Grid>
+        
+    </Grid>
+</Page>

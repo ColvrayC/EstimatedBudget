@@ -14,7 +14,19 @@
         WindowState="Maximized" MinHeight="600" MinWidth="910"
         FontFamily="/Ressources/Helvetica.oft#Helvetica"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-   
+    <Window.Resources>
+        <Style x:Key="Link" TargetType="{x:Type Hyperlink}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
+    </Window.Resources>
     <!-- PRINCPAL CONTENT -->
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
@@ -65,8 +77,17 @@
                 <SolidColorBrush Color="Gray"/>
             </Grid.Background>
 
+            <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="White">
+                <Hyperlink Command="{Binding OpenFlyOutBankAccountCommand, Mode=TwoWay}" Style="{StaticResource Link}" BaselineAlignment="Center">
+                    <StackPanel >
+                    <TextBlock Text="{Binding TitleBankAccount}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding SubTitleBankAccount}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                </Hyperlink>    
+            </TextBlock>
+            
             <Rectangle Fill="#949494"  IsHitTestVisible="False" Grid.Column="4"/>
-            <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding NavigationName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/>
+            <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" Text="{Binding NavigationName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
 
         </Grid>
         <!--END BORDER UNDER TOP -->
@@ -91,4 +112,45 @@
             </Grid>
         </Grid>
     </Grid>
+    
+    <!-- FLYOUT -->
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl >
+            <Controls:Flyout HorizontalAlignment="Center" Position="Top"  Style="{StaticResource FlyoutStyleBankAccount}" IsOpen="{Binding OpenFlyOutBankAccount, Mode=TwoWay}"  CloseButtonVisibility="Collapsed">
+                <Grid x:Name="LayoutFlyout" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sélection du Compte" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="27" Margin="0,20,0,25"/>
+                    <!-- Entrpot Fiscale -->
+                    <TextBlock Grid.Row="1" Text="Banque :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1" VerticalAlignment="Bottom" Foreground="{StaticResource AccentForeColorFlyOutEntrepot}" FontWeight="Bold"/>
+                    <ComboBox  Grid.Row="1" Grid.Column="1"  x:Name="BankAccountCbo" IsEditable="True"   ItemsSource="{Binding  BankAccounts,Mode=OneWay}" 
+                                       SelectedItem="{Binding SelectedBankAccount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                       Text="{Binding SelectedBankAccount.Code ,UpdateSourceTrigger=PropertyChanged}" 
+                                       Style="{StaticResource FlyOutComboBox}" IsReadOnly="True">
+                    </ComboBox>
+                    <TextBox Grid.Row="1" Grid.Column="1"  DataContext="{Binding ElementName=BankAccountCbo, Path=SelectedItem}"  
+                                     Text="{Binding Wording}" Style="{StaticResource FlyOutTextBox}"   Margin="121,9,0,0" />
+
+                   
+                    <!--BUTTON FICHE -->
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="173,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1"    Style="{StaticResource  FlyOutButton}" Command="{Binding OpenFlyOutBankAccountCommand, Mode=TwoWay}" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <!--END BUTTON FICHE -->
+                </Grid>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
 </Controls:MetroWindow>

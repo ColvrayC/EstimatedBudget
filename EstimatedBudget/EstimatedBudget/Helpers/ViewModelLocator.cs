@@ -1,8 +1,8 @@
 ﻿using EstimatedBudget.ViewModels;
 using EstimatedBudget.ViewModels.BankAccounts;
+using EstimatedBudget.ViewModels.BudgetMonitoring;
 using EstimatedBudget.ViewModels.Categories;
 using EstimatedBudget.ViewModels.Levies;
-using EstimatedBudget.ViewModels.Modes;
 using EstimatedBudget.ViewModels.Registrations;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
@@ -12,15 +12,20 @@ namespace EstimatedBudget.Helpers
 {
     public class ViewModelLocator
     {
+        static IUnityContainer BudgetMonitoringContainer;
         static IUnityContainer BankAccountContainer;
         static IUnityContainer CategoryContainer;
         static IUnityContainer LevyContainer;
-        static IUnityContainer ModeContainer;
         static IUnityContainer RegistrationContainer;
 
         static IUnityContainer MainContainer;
         static ViewModelLocator()
         {
+
+            BudgetMonitoringContainer = new UnityContainer();
+            BudgetMonitoringContainer.AddNewExtension<Interception>();
+            BudgetMonitoringContainer.RegisterType<BudgetMonitoringViewModel>().Configure<Interception>().SetInterceptorFor<BudgetMonitoringViewModel>(new VirtualMethodInterceptor());
+
             BankAccountContainer = new UnityContainer();
             BankAccountContainer.AddNewExtension<Interception>();
             BankAccountContainer.RegisterType<BankAccountViewModel>().Configure<Interception>().SetInterceptorFor<BankAccountViewModel>(new VirtualMethodInterceptor());
@@ -33,10 +38,6 @@ namespace EstimatedBudget.Helpers
             LevyContainer.AddNewExtension<Interception>();
             LevyContainer.RegisterType<LevyViewModel>().Configure<Interception>().SetInterceptorFor<LevyViewModel>(new VirtualMethodInterceptor());
 
-            ModeContainer = new UnityContainer();
-            ModeContainer.AddNewExtension<Interception>();
-            ModeContainer.RegisterType<ModeViewModel>().Configure<Interception>().SetInterceptorFor<ModeViewModel>(new VirtualMethodInterceptor());
-
             RegistrationContainer = new UnityContainer();
             RegistrationContainer.AddNewExtension<Interception>();
             RegistrationContainer.RegisterType<RegistrationViewModel>().Configure<Interception>().SetInterceptorFor<RegistrationViewModel>(new VirtualMethodInterceptor());
@@ -46,6 +47,10 @@ namespace EstimatedBudget.Helpers
             MainContainer.RegisterType<MainViewModel>(new ContainerControlledLifetimeManager()).Configure<Interception>().SetInterceptorFor<MainViewModel>(new VirtualMethodInterceptor());
         }
 
+        public BudgetMonitoringViewModel BudgetMonitoring
+        {
+            get { return BudgetMonitoringContainer.Resolve<BudgetMonitoringViewModel>(); }
+        }
         public BankAccountViewModel BankAccount
         {
             get { return BankAccountContainer.Resolve<BankAccountViewModel>(); }
@@ -58,11 +63,6 @@ namespace EstimatedBudget.Helpers
         public LevyViewModel Levy
         {
             get { return LevyContainer.Resolve<LevyViewModel>(); }
-        }
-
-        public ModeViewModel Mode
-        {
-            get { return ModeContainer.Resolve<ModeViewModel>(); }
         }
 
         public RegistrationViewModel Registration

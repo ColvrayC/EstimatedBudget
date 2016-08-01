@@ -18,21 +18,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1"  Height="Auto">
-               <Grid.Style>
-                <Style TargetType="{x:Type Grid}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ComptaMatiere}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ComptaMatiere}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-        </Grid>
-        <!-- Menu Premiere Colonne -->
+   
         <Grid  Background="{StaticResource AccentBackgroundMenu}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -55,132 +41,113 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="13" />
-            <!--UTILISATEURS -->
+            <!--BUDGET -->
             <Border Grid.Row="0" Style="{StaticResource ItemMenu}">
-                <Grid >
+                <Grid IsEnabled="False" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Users.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Analyzes" Style="{StaticResource TitleMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Budget.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Suivi Budget" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="BudgetMonitoringView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Border>
 
             <Border Grid.Row="1" Style="{StaticResource BorderSpaceMenu}"/>
 
-            <!-- COMPTA MATIERE -->
+            <!-- REGISTRATION -->
             <Border x:Name="ComptaMatiere" Grid.Row="2" Style="{StaticResource ItemMenu}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Compta Matière.png"  Style="{StaticResource ImageMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Registration.png"  Style="{StaticResource ImageMenu}"/>
                     <TextBlock Grid.Column="1" Text="Enregistrements" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="RegistrationView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Border>
 
-            <!--EDITIONS -->
+            <!--LEVIES -->
             <Border Grid.Row="3" Style="{StaticResource ItemMenu}">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Editions.png"  Style="{StaticResource ImageMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Levy.png"  Style="{StaticResource ImageMenu}"/>
                     <TextBlock Grid.Column="1" Text="Prélèvements" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="LevyView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Border>
 
-            <!--TRAITEMENT PERIODE -->
+            <!-- CATEGORIES -->
             <Border Grid.Row="4" Style="{StaticResource ItemMenu}">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Traitement Période.png"  Style="{StaticResource ImageMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Category.png"  Style="{StaticResource ImageMenu}"/>
                     <TextBlock Grid.Column="1" Text="Catégories" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="CategoryView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Border>
 
-            <!-- FICHIERS DE BASE -->
+            <!-- BANK ACCOUNT -->
             <Border Grid.Row="5" Style="{StaticResource ItemMenu}">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Fichiers de Base.png"  Style="{StaticResource ImageMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/BankAccount.png"  Style="{StaticResource ImageMenu}"/>
                     <TextBlock Grid.Column="1" Text="Comptes Bancaires" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="BankAccountView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Border>
 
-            <!-- PARAMETRAGE -->
-            <Border Grid.Row="6" Style="{StaticResource ItemMenu}">
-                <Grid >
+
+            <Border Grid.Row="6" Style="{StaticResource BorderSpaceMenu}"/>
+
+
+            <!--PRINTER -->
+            <Border Grid.Row="7" Style="{StaticResource ItemMenu}">
+                <Grid IsEnabled="False" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Parametrages.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Paramétrages" Style="{StaticResource TitleMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Printer.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Editions" Style="{StaticResource TitleMenu}"/>
                 </Grid>
+               <!-- <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="PrinterView.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
             </Border>
-
-            <Border Grid.Row="7" Style="{StaticResource BorderSpaceMenu}"/>
-
-            <!--FICHIERS -->
-            <Border Grid.Row="8" Style="{StaticResource ItemMenu}">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Fichiers.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Fichiers" Style="{StaticResource TitleMenu}"/>
-                </Grid>
-            </Border>
-
-            <!--IMPRESSIONS -->
-            <Border Grid.Row="9" Style="{StaticResource ItemMenu}">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Impressions.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Imprimer" Style="{StaticResource TitleMenu}"/>
-                </Grid>
-            </Border>
-
-            <Border Grid.Row="10" Style="{StaticResource BorderSpaceMenu}"/>
-
-            <!--KEY -->
-            <Border Grid.Row="11" Style="{StaticResource ItemMenu}">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Configuration.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Configuration" Style="{StaticResource TitleMenu}"/>
-                </Grid>
-            </Border>
-            <!--KEY -->
-            <Border Grid.Row="12" Style="{StaticResource ItemMenu}">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/License.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="License..." Style="{StaticResource TitleMenu}"/>
-                </Grid>
-            </Border>
-
-
         </Grid>
     </Grid>
 </ScrollViewer>

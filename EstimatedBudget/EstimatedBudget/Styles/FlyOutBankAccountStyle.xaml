@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:EstimatedBudget.Styles"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+    
+    <Style x:Key="FlyoutStyleBankAccount"
+           TargetType="{x:Type Controls:Flyout}">
+        <Setter Property="Foreground"
+                Value="{StaticResource AccentForeColorFlyOutEntrepot}"/>
+        <Setter Property="Position"
+                Value="Right" />
+        <Setter Property="IsModal"
+                Value="True" />
+        <Setter Property="Theme"
+                Value="Accent" />
+        <Setter Property="Background"
+                Value="{StaticResource AccentBackgroundFlyOutEntrepot }"/>
+    </Style>
+
+
+
+    <Style x:Key="FlyOutButton" BasedOn="{StaticResource SquareButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="Valider"/>
+        <Setter Property="Height" Value="15"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Margin" Value="0,0,30,0"/>
+        <Setter Property="Background" Value="{DynamicResource AccentButtonFlyOutEntrepot}" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentForeColorFlyOutEntrepot}" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="FlyOutComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MetroComboBox}" >
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Margin" Value="20,9,0,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="IsEditable" Value="True"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ComboBoxItem}" >
+                    <Setter Property="Width" Value="270"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource AccentBackgroundItemComboBoxMouseHover}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Code}" Margin="0,0,4,0"/>
+                        <TextBlock Text="{Binding Path=Wording}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FlyOutTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0,9,12,0"/>
+        <Setter Property="Width" Value="145"/>
+        <Setter Property="IsEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+</ResourceDictionary>

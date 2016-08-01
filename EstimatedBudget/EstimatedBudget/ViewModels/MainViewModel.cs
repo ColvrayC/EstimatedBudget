@@ -4,6 +4,9 @@ using System.Windows;
 using EstimatedBudget.POCO;
 using System.IO;
 using EstimatedBudget.Helpers;
+using System.Collections.ObjectModel;
+using EstimatedBudget.POCO.Models;
+using EstimatedBudget.POCO.DAL;
 
 namespace EstimatedBudget.ViewModels
 {
@@ -15,26 +18,34 @@ namespace EstimatedBudget.ViewModels
         /// ChangeNameFrameCommand
 
         public RelayCommand<string> EditModeCommand { get; set; }
-
         public RelayCommand<string> SelectedFrameCommand { get; set; }
+        public RelayCommand OpenFlyOutBankAccountCommand { get; set; }
 
 
         /// <summary>
-        ///CONSTRUCTEUR
+        ///CONSTRUCTOR
         /// </summary>
         public MainViewModel()
         {
+            LevyDAL.CheckLevies(new Levy());
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
-            if (!File.Exists(PathDatabase))
+            if (File.Exists(PathDatabase))
             {
-                DataBaseManager.CreateDatabase();
+                if(new FileInfo(PathDatabase).Length == 0)
+                    DataBaseManager.CreateDatabase();
             }
-
+            else
+                return;
+             
             PathCurrentFrame = "BankAccountView.xaml";
-
+            NavigationName = NameFrame.BankAccount;
+            BankAccounts = new ObservableCollection<BankAccount>(BankAccountDAL.Load());
+            OpenFlyOutBankAccountCommand = new RelayCommand(ShowFlyOutBankAccount);
             SelectedFrameCommand = new RelayCommand<string>(SelectedFrame);
             ShowNav = Visibility.Collapsed;
+            //Ask Bank Account
+            OpenFlyOutBankAccount = true;
         }
 
         /// <summary>
@@ -57,6 +68,20 @@ namespace EstimatedBudget.ViewModels
         [RaisePropertyChanged]
         public virtual string NavigationName { get; set; }
 
+        [RaisePropertyChanged]
+        public virtual bool OpenFlyOutBankAccount { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual ObservableCollection<BankAccount> BankAccounts { get; set; }
+        [RaisePropertyChanged]
+        public virtual BankAccount SelectedBankAccount { get; set; }
+        [RaisePropertyChanged]
+        public virtual string TitleBankAccount { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual string SubTitleBankAccount { get; set; }
+
+
         /// <summary>
         /// METHODES
         /// </summary>
@@ -66,6 +91,24 @@ namespace EstimatedBudget.ViewModels
         {
             PathCurrentFrame = Path;
             ShowNav = Visibility.Visible;
+            NavigationName = NameFrame.Name;
+        }
+
+        //FlyOut for Selected BankAccount
+        public void ShowFlyOutBankAccount()
+        {
+            if (OpenFlyOutBankAccount)
+            {
+                OpenFlyOutBankAccount = false;
+                //New Selected BankAccount
+                Global.BankAccountCode = SelectedBankAccount.Code;
+                TitleBankAccount = SelectedBankAccount.Description;
+                SubTitleBankAccount = SelectedBankAccount.Code + " " + SelectedBankAccount.Wording;
+            }
+            else
+            {
+                OpenFlyOutBankAccount = true;
+            }
         }
 
         //CleanUp

@@ -7,9 +7,9 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:cmd="http://www.galasoft.ch/mvvmlight"
       xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
-       xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
+      xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
       x:Name="Frame"
-      Title="Comptes Bancaires" WindowHeight="300" WindowWidth="500" Background="{StaticResource AccentBackgroundColorFrame}"  
+      Background="{StaticResource AccentBackgroundColorFrame}"  
       DataContext="{Binding BankAccount, Source={StaticResource Locator}}"
       dialogs:DialogParticipation.Register="{Binding}">
 
@@ -40,30 +40,25 @@
       
       
         <!-- DATAGRID -->
-        <DataGrid  x:Name="Datagrid"  Style="{DynamicResource DataGridStyle}" SelectedItem="{Binding SelectedItem}"  Grid.Column="0"  Grid.Row="1"  ItemsSource="{Binding BankAccounts}">
-            
+        <DataGrid  x:Name="Datagrid"  Style="{DynamicResource DataGridStyle}" SelectedItem="{Binding SpecsBankAccount}" SelectedIndex="{Binding SelectedIndex}"  Grid.Column="0"  Grid.Row="1"  ItemsSource="{Binding BankAccounts}">
+
             <DataGrid.Columns>
                 <UC:DataGridEditColumn/>
-                <DataGridTextColumn Header="Code" Binding="{Binding Path=Code}" />
-                <DataGridTextColumn Header="Libellé" Binding="{Binding Path=Wording}" />
-                <DataGridTextColumn Header="Compte Epargne" Binding="{Binding Path=Investment}"/>
+                <DataGridTextColumn Header="Code" CanUserSort="False" Binding="{Binding Path=Code}" />
+                <DataGridTextColumn Header="Libellé" CanUserSort="False" Binding="{Binding Path=Wording}" />
+                <DataGridTextColumn Header="Description" CanUserSort="False" Binding="{Binding Path=Description}" />
+                <DataGridTextColumn Header="Compte Epargne" CanUserSort="False" Binding="{Converter:DisplayBoolToYesNoConverter Investment,Oui,Non}"/>
             </DataGrid.Columns>
-
-          <!--  <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <cmd:EventToCommand Command="{Binding SendDataFicheCommand,Mode=OneWay}" CommandParameter="{Binding ElementName=Datagrid,Path=SelectedItem}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
         </DataGrid>
-        
-        <Grid Name="Specs"   Grid.Column="1"  Grid.RowSpan="2"  Style="{StaticResource mySpecsStyle}" Visibility="{Binding CurrentMode, Converter={StaticResource SpecsVisibilityConverter}}">
+
+        <Grid Name="Specs"   Grid.Column="1"  Grid.RowSpan="2"  Style="{StaticResource mySpecsStyle}" Visibility="{Binding ActiveMode, Converter={StaticResource SpecsVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!-- G1 -->
-            <Grid Style="{StaticResource mySpecsStyle}" Margin="0">
+            <Grid Style="{StaticResource mySpecsStyle}" Margin="0,0,0.2,-0.2" Grid.RowSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -75,33 +70,41 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Definition du paramétrage de la table " Style="{StaticResource SpecsLabelTitleStyle}" Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock Text="Défintion du Compte Bancaire" Style="{StaticResource SpecsLabelTitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" 
+                           IsEnabled="{Binding Mode, Converter={StaticResource EnabledAddModeConverter}}">
                     <Run Text="{Binding CurrentTable,UpdateSourceTrigger=PropertyChanged}"/>
                 </TextBlock>
 
-                <TextBlock Grid.Row="1"  Text="Numéro :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Text="{Binding Para_Champ}"  Style="{StaticResource SpecsTextboxStyleNumber}" />
+                <!-- ID -->
+                <TextBlock Grid.Row="1"  Text="Code :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="{Binding ActiveMode, Converter={StaticResource EnabledAddModeConverter}}" Text="{Binding Code,ValidatesOnDataErrors=True,NotifyOnValidationError=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource SpecsTextboxStyleNumber}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 <!-- Libellé -->
                 <TextBlock Grid.Row="2"  Text="Libellé :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="2" x:Name="Libelle" MaxLength="10" Grid.Column="1" Text="{Binding Para_Nom,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=LostFocus}" Style="{StaticResource SpecsTextboxStyleNumber}"   />
-                <!-- Table -->
-                <TextBlock Grid.Row="3" x:Name="LabelChamp1" Text="Table :" Style="{StaticResource SpecsLabelStyle}"/>
+                <TextBox Grid.Row="2" x:Name="Wording" MaxLength="200" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnValidationError=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
-                <Grid Grid.Row="5" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">
+                <!-- Description -->
+                <TextBlock Grid.Row="3"  Text="Description :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="3"  MaxLength="200" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnValidationError=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+
+                <!-- Investissement -->
+                <TextBlock Grid.Row="4"  Text="Epargne :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <RadioButton BorderThickness="2" Grid.Row="4" Grid.Column="1" Content="Oui" GroupName="1" IsChecked="{Binding Investment, Converter={StaticResource CheckBoxToYesNoConverter}, ConverterParameter=Yes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0"/>
+                <RadioButton Grid.Row="4" Grid.Column="1" Content="Non" GroupName="1"  IsChecked="{Binding Investment, Converter={StaticResource CheckBoxToYesNoConverter}, ConverterParameter=No,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0"/>
+
+                <!-- BEGIN FICHE -->
+                <Grid Grid.Row="5" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button  Name="BtnAnnuler" Command="{Binding CurrentModeCommand}" CommandParameter="DEFAUT" Style="{StaticResource SpecsButtonAnnuler}"/>
+                    <Button  Name="BtnAnnuler" Command="{Binding ModeCommand}" CommandParameter="DEFAULT" Style="{StaticResource SpecsButtonAnnuler}"/>
                     <Button Grid.Column="1"  Command="{Binding ValidatedCommand}" CommandParameter="{Binding ElementName=Datagrid, Path=SelectedIndex}"  Style="{StaticResource SpecsButtonValider}"/>
                 </Grid>
                 <!--END BUTTON FICHE -->
             </Grid>
         </Grid>
-
     </Grid>
 </Page>

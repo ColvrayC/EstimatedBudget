@@ -15,7 +15,7 @@
                 <Setter.Value>
                     <!-- BUTTON AJOUT -->
                     <DataTemplate>
-                        <Button  Name="BtnImgAdd" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding DataContext.CurrentModeCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="AJOUT" Background="{StaticResource AccentBackgroundHeader}" BorderBrush="{StaticResource AccentBackgroundHeader}" >
+                        <Button  Name="BtnImgAdd" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding DataContext.ModeCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="ADD" Background="{StaticResource AccentBackgroundHeader}" BorderBrush="{StaticResource AccentBackgroundHeader}" >
                             <Image Source="pack://application:,,,/Images/EditColumn/IconeAddItem.png"  Name="ImgAdd" Width="15" Height="15"  SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0"/>
                         </Button>
 

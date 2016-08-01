@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EstimatedBudget.Helpers
 {
-    public static class EditionMode
+    public static class Modes
     {
         public const string DEFAULT = "DEFAULT";
         public const string ADD = "ADD";

@@ -118,6 +118,6 @@
     <!-- END FLYOUT -->
 
     <!-- COMBOBOX -->
-    <SolidColorBrush x:Key="AccentBackgroundItemComboBoxMouseHover" Color="{StaticResource AccentLightGrey}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentBackgroundItemComboBoxMouseHover" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
     <!-- END COMBOBOX -->
 </ResourceDictionary>

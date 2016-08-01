@@ -106,6 +106,18 @@
       <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Design\Microsoft.Expression.Prototyping.SketchControls.design.v4.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -138,6 +150,7 @@
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.102.0\lib\net451\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -164,11 +177,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\CheckBoxToYesNoConverter.cs" />
+    <Compile Include="Converters\DisplayBoolToYesNoConverter.cs" />
+    <Compile Include="Converters\DisplayLevyConverter.cs" />
+    <Compile Include="Converters\EnabledAddModeConverter.cs" />
     <Compile Include="Converters\FrameConverter.cs" />
     <Compile Include="Converters\SpecsVisibilityConverter.cs" />
     <Compile Include="Converters\SpecsWidthVisibilityConverter.cs" />
+    <Compile Include="Errors\BooleanOrConverter.cs" />
+    <Compile Include="Errors\ErrorsMessages.cs" />
+    <Compile Include="Errors\ErrorsValidation.cs" />
+    <Compile Include="Errors\Euro.cs" />
+    <Compile Include="Errors\ProprertiesName.cs" />
+    <Compile Include="Errors\RepositionPopupBehavior.cs" />
     <Compile Include="Helpers\DialogService.cs" />
-    <Compile Include="Helpers\EditionMode.cs" />
+    <Compile Include="Helpers\Global.cs" />
+    <Compile Include="Helpers\Modes.cs" />
+    <Compile Include="Helpers\NameFrame.cs" />
     <Compile Include="Helpers\RaisePropertyChanged.cs" />
     <Compile Include="Helpers\ViewModelLocator.cs" />
     <Compile Include="UserControls\DataGridEditColumn.xaml.cs">
@@ -177,14 +202,21 @@
     <Compile Include="UserControls\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BankAccounts\BankAccountSpecsViewModel.cs" />
     <Compile Include="ViewModels\BankAccounts\BankAccountViewModel.cs" />
+    <Compile Include="ViewModels\BudgetMonitoring\BudgetMonitoringViewModel.cs" />
+    <Compile Include="ViewModels\Categories\CategorySpecsViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Levies\LevySpecsViewModel.cs" />
     <Compile Include="ViewModels\Levies\LevyViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\Modes\ModeViewModel.cs" />
+    <Compile Include="ViewModels\Registrations\RegistrationSpecsViewModel.cs" />
     <Compile Include="ViewModels\Registrations\RegistrationViewModel.cs" />
     <Compile Include="Views\BankAccountView.xaml.cs">
       <DependentUpon>BankAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BudgetMonitoringView.xaml.cs">
+      <DependentUpon>BudgetMonitoringView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
@@ -194,9 +226,6 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ModeView.xaml.cs">
-      <DependentUpon>ModeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
@@ -235,8 +264,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behaviors\" />
+    <Folder Include="ViewModels\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Errors\ErrorTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -249,7 +283,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ComboBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\FlyOutBankAccountStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +323,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BudgetMonitoringView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -289,10 +339,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ModeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\RegistrationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,15 +346,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\Compta Matière.png" />
-    <Resource Include="Images\Menu\Configuration.png" />
     <Resource Include="Images\Menu\Editions.png" />
-    <Resource Include="Images\Menu\Fichiers de Base.png" />
-    <Resource Include="Images\Menu\Fichiers.png" />
-    <Resource Include="Images\Menu\Impressions.png" />
-    <Resource Include="Images\Menu\License.png" />
-    <Resource Include="Images\Menu\Parametrages.png" />
-    <Resource Include="Images\Menu\Traitement Période.png" />
-    <Resource Include="Images\Menu\Users.png" />
+    <Resource Include="Images\Menu\Printer.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />
@@ -332,6 +371,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\EditColumn\bgtransparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\Category.png" />
+    <Resource Include="Images\Menu\Levy.png" />
+    <Resource Include="Images\Menu\Budget.png" />
+    <Resource Include="Images\Menu\Registration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Menu\BankAccount.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.102.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net451\System.Data.SQLite.Core.targets')" />

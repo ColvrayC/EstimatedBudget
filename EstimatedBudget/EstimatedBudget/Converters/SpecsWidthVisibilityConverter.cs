@@ -15,11 +15,11 @@ namespace EstimatedBudget.Converters
             var SizeFrame = System.Convert.ToInt32(values[2]);
             var FicheVisibility = values[3];
 
-            if (SizeFrame < NewSizeDataGrid + SizeFiche + 50 && (Visibility)FicheVisibility == Visibility.Visible)
+            if (SizeFrame < NewSizeDataGrid + SizeFiche + 60 && (Visibility)FicheVisibility == Visibility.Visible)
                 return new GridLength(1, GridUnitType.Star);
 
             //Si datagrid aussi grand que frame
-            if (SizeFrame <= NewSizeDataGrid + 50 && (Visibility)FicheVisibility == Visibility.Collapsed)
+            if (SizeFrame < NewSizeDataGrid && (Visibility)FicheVisibility == Visibility.Collapsed)
                 return new GridLength(1, GridUnitType.Star);
 
 

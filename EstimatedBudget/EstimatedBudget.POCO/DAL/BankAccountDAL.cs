@@ -18,6 +18,9 @@ namespace EstimatedBudget.POCO.DAL
                 DataList = myCnn.GetList<BankAccount>(Where);
 
             }
+            if (DataList == null)
+                return null;
+
             return DataList.ToList();
         }
 
@@ -25,7 +28,14 @@ namespace EstimatedBudget.POCO.DAL
         {
             using (var myCnn = Cnn.GetOpenConnection())
             {
-                myCnn.Insert<BankAccount>(B);
+                //myCnn.Insert<BankAccount>(B);
+                myCnn.Execute("INSERT INTO BankAccount (Code, Wording,Description, Investment) VALUES(@Code, @Wording,@Description,@Investment)", new
+                {
+                    B.Code,
+                    B.Wording,
+                    B.Description,
+                    B.Investment          
+                });
             }
 
         }
@@ -37,6 +47,28 @@ namespace EstimatedBudget.POCO.DAL
                 myCnn.Update(B);
             }
 
+        }
+
+        public static void Delete(BankAccount B)
+        {
+            using (var myCnn = Cnn.GetOpenConnection())
+            {
+                myCnn.Delete(B);
+            }
+        }
+
+        public static bool IsCodeExistPK(string value)
+        {
+            BankAccount Result;
+            using (var myCnn = Cnn.GetOpenConnection())
+            {
+              Result = myCnn.Get<BankAccount>(value);
+            }
+
+            if (Result != null)
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -20,6 +20,9 @@ namespace EstimatedBudget.POCO.DAL
             {
                 DataList = myCnn.GetList<Registration>(Where);
             }
+            if (DataList == null)
+                return null;
+
             return DataList.ToList();
         }
 
@@ -27,7 +30,20 @@ namespace EstimatedBudget.POCO.DAL
         {
             using (var myCnn = Cnn.GetOpenConnection())
             {
-                myCnn.Insert<Registration>(R);
+
+                DBNull NullValue = DBNull.Value;
+
+              //  myCnn.Insert<Registration>(R);
+                myCnn.Execute("INSERT INTO Registration (Wording, Description,DateR,Price,B_Code,C_Id,L_Id) VALUES(@Wording, @Description,@DateR,@Price,@B_Code,@C_Id,@L_Id)", new
+                {
+                    R.Wording,
+                    R.Description,
+                    R.DateR,
+                    R.Price,
+                    R.B_Code,
+                    R.C_Id,
+                    R.L_Id
+                });
             }
         }
 
@@ -36,6 +52,14 @@ namespace EstimatedBudget.POCO.DAL
             using (var myCnn = Cnn.GetOpenConnection())
             {
                 myCnn.Update(R);
+            }
+        }
+
+        public static void Delete(Registration R)
+        {
+            using (var myCnn = Cnn.GetOpenConnection())
+            {
+                myCnn.Delete(R);
             }
         }
     }

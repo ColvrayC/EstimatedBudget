@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace EstimatedBudget.Views
 {
     /// <summary>
-    /// Interaction logic for ModeView.xaml
+    /// Interaction logic for BudgetMonitoringView.xaml
     /// </summary>
-    public partial class ModeView : Page
+    public partial class BudgetMonitoringView : Page
     {
-        public ModeView()
+        public BudgetMonitoringView()
         {
             InitializeComponent();
         }

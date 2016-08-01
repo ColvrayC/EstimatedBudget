@@ -709,7 +709,8 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="AutoGenerateColumns"
-                Value="False" />
+                Value="False"/>
+       
         <Setter Property="FrozenColumnCount"
                 Value="1" />
         <Setter Property="MinRowHeight"

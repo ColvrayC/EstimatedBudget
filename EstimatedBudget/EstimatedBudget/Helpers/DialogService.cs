@@ -6,10 +6,17 @@ using MahApps.Metro.Controls;
 namespace EstimatedBudget.Helpers
 {
     /// <summary>
-    /// REPRESENTE LES MODELES DES MESSAGEBOX
+    /// REPRESENTE LES ModeLES DES MESSAGEBOX
     /// </summary>
     public static class DialogService
     {
+        //Error Validation
+        public static string TitleTextErrorValidation = "Validation Impossible";
+        public static string TextErrorValidation = "La validation de cet élément est impossible car il comporte des erreurs.";
+
+        //Confirm Delete
+        public static string TitleTextConfirmDelete = "Confirmation de supression.";
+        public static string TextConfirmDelete = "Etes-vous sûr de vouloir suppreimer cet élément ?";
         public static async Task<MessageDialogResult> ShowMessage(string message1, string message2 = "", MessageDialogStyle dialogStyle = MessageDialogStyle.Affirmative)
         {
             var metroWindow = (Application.Current.MainWindow as MetroWindow);

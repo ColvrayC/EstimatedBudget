@@ -14,18 +14,26 @@
       <!--Contient les tyles par defaut des views ! -->
       <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Styles/GeneralColor.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/DataGridStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/SpecsStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/MenuStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Errors/ErrorTemplate.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/FlyOutBankAccountStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         
       <!-- CONVERT -->
       <Converter:AdaptiveDataGridConverter x:Key="AdaptiveDataGridConverter" />
-      <Converter:SpecsVisibilityConverter x:Key="SpecsVisibilityConverter" />
+      <Converter:SpecsVisibilityConverter x:Key="SpecsVisibilityConverter"/>
       <Converter:FrameConverter x:Key="FrameConverter" />
-      <ViewModel:ViewModelLocator x:Key="Locator" />
+            <Converter:CheckBoxToYesNoConverter x:Key="CheckBoxToYesNoConverter" />
+            <Converter:EnabledAddModeConverter x:Key="EnabledAddModeConverter" />
+            <Converter:DisplayLevyConverter x:Key="DisplayLevyConverter"/>
+
+            <ViewModel:ViewModelLocator x:Key="Locator" />
     </ResourceDictionary>
   </Application.Resources>
 </Application>

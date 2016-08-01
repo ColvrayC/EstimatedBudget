@@ -1,14 +1,101 @@
 ﻿<Page x:Class="EstimatedBudget.Views.CategoryView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+      xmlns:sysglb="clr-namespace:System.Globalization;assembly=mscorlib"
+      xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
+      xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
       xmlns:local="clr-namespace:EstimatedBudget.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="CategoryView">
+      x:Name="Frame"
+      Background="{StaticResource AccentBackgroundColorFrame}"  
+      DataContext="{Binding Category, Source={StaticResource Locator}}"
+      dialogs:DialogParticipation.Register="{Binding}">
 
-    <Grid>
-        
+    <Grid Margin="10,20,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ColDatagrid" >
+                <ColumnDefinition.Width>
+                    <MultiBinding  Converter="{StaticResource AdaptiveDataGridConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding ElementName="Datagrid" Path="ActualWidth" />
+                            <Binding ElementName="Specs" Path="ActualWidth"/>
+                            <Binding ElementName="Frame" Path="ActualWidth"/>
+                            <Binding ElementName="Specs" Path="Visibility"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </ColumnDefinition.Width>
+            </ColumnDefinition>
+            <ColumnDefinition Width="Auto"  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.RowSpan="2" Background="{StaticResource  AccentDatagridBackgroundHeader}" >
+            <Border BorderThickness="3,3,3,0" BorderBrush="{DynamicResource AccentColorBrush}"/>
+        </Grid>
+
+
+        <!-- DATAGRID -->
+        <DataGrid  x:Name="Datagrid"  Style="{DynamicResource DataGridStyle}" SelectedItem="{Binding SpecsCategory}"  Grid.Column="0"  Grid.Row="1"  ItemsSource="{Binding Categories}">
+
+            <DataGrid.Columns>
+                <UC:DataGridEditColumn/>
+                <DataGridTextColumn Header="Libellé" CanUserSort="False" Binding="{Binding Path=Wording}" />
+                <DataGridTextColumn Header="Objectif Mensuelle" CanUserSort="False" Binding="{Binding Path=Targetprice, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Name="Specs"   Grid.Column="1"  Grid.RowSpan="2"  Style="{StaticResource mySpecsStyle}" Visibility="{Binding ActiveMode, Converter={StaticResource SpecsVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- G1 -->
+            <Grid Style="{StaticResource mySpecsStyle}"  Grid.RowSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Défintion de la Catégorie" Style="{StaticResource SpecsLabelTitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" >
+                    <Run Text="{Binding CurrentTable,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+
+                <!-- Libellé -->
+                <TextBlock Grid.Row="2"  Text="Libellé :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="2" x:Name="Wording" MaxLength="200" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+
+                <!-- Objectif Mensuelle -->
+                <TextBlock Grid.Row="4"  Text="Objectif Mensuelle :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="4" x:Name="TargetPrice" MaxLength="7" Grid.Column="1" Text="{Binding Targetprice,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}" Style="{StaticResource SpecsTextboxStyleNumber}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+
+                <!-- BEGIN FICHE -->
+                <Grid Grid.Row="5" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  Name="BtnAnnuler" Command="{Binding ModeCommand}" CommandParameter="DEFAUT" Style="{StaticResource SpecsButtonAnnuler}"/>
+                    <Button Grid.Column="1"  Command="{Binding ValidatedCommand}" CommandParameter="{Binding ElementName=Datagrid, Path=SelectedIndex}"  Style="{StaticResource SpecsButtonValider}"/>
+                </Grid>
+                <!--END BUTTON FICHE -->
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>

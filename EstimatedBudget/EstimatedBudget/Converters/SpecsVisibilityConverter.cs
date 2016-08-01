@@ -22,7 +22,7 @@ namespace EstimatedBudget.Converters
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((string)value == EditionMode.ADD || (string)value == EditionMode.MODIFICATION)
+            if ((string)value == Modes.ADD || (string)value == Modes.MODIFICATION)
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;

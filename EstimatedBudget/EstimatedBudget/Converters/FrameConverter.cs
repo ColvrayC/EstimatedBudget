@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EstimatedBudget.Helpers;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -6,11 +7,10 @@ namespace EstimatedBudget.Converters
 {
     public class FrameConverter : IValueConverter
     {
-        //Compta Matière
+        const string BudgetMonitoring = "BudgetMonitoringView.xaml";
         const string BankAccount = "BankAccountView.xaml";
         const string Category = "CategoryView.xaml";
         const string Levy = "LevyView.xaml";
-        const string Mode = "ModeView.xaml";
         const string Registration = "RegistrationView.xaml";
 
 
@@ -20,20 +20,25 @@ namespace EstimatedBudget.Converters
             string Result = "";
             switch (value.ToString())
             {
+                case BudgetMonitoring:
+                    Result = BudgetMonitoring;
+                    NameFrame.Name = NameFrame.BudgetMonitoring;
+                    break;
                 case BankAccount:
                     Result = BankAccount;
+                    NameFrame.Name = NameFrame.BankAccount;
                     break;
                 case Category:
                     Result = Category;
+                    NameFrame.Name = NameFrame.Category;
                     break;
                 case Levy:
                     Result = Levy;
-                    break;
-                case Mode:
-                    Result = Mode;
+                    NameFrame.Name = NameFrame.Levy;
                     break;
                 case Registration:
                     Result = Registration;
+                    NameFrame.Name = NameFrame.Registration;
                     break;
             }
             return Result;

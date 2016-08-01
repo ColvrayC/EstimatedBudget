@@ -1,6 +1,7 @@
 ﻿using System.Data.Common;
 using System.Configuration;
 using System.Windows.Forms;
+using System.IO;
 
 namespace EstimatedBudget.POCO
 {
@@ -32,6 +33,7 @@ namespace EstimatedBudget.POCO
             conn.ConnectionString = this.connectionString;
             try
             {
+           
                 conn.Open();
             }
             catch (System.Data.SqlClient.SqlException)

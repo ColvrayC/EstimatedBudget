@@ -17,6 +17,9 @@ namespace EstimatedBudget.POCO.DAL
             {
                 DataList = myCnn.GetList<Category>(Where);
             }
+            if (DataList == null)
+                return null;
+
             return DataList.ToList();
         }
 
@@ -24,7 +27,11 @@ namespace EstimatedBudget.POCO.DAL
         {
             using (var myCnn = Cnn.GetOpenConnection())
             {
-                myCnn.Insert<Category>(C);
+                myCnn.Execute("INSERT INTO CATEGORY (Wording, Targetprice) VALUES(@Wording, @Targetprice)", new
+                {
+                    C.Wording,
+                    C.Targetprice
+                });  
             }
 
         }
@@ -36,6 +43,13 @@ namespace EstimatedBudget.POCO.DAL
                 myCnn.Update(C);
             }
 
+        }
+        public static void Delete(Category C)
+        {
+            using (var myCnn = Cnn.GetOpenConnection())
+            {
+                myCnn.Delete(C);
+            }
         }
     }
 }
