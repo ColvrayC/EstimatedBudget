@@ -74,6 +74,11 @@ namespace EstimatedBudget.ViewModels.Registrations
 
             var results = new List<ValidationResult>();
 
+            if (propertyName == "Price")
+            {
+                if ((decimal)propertyValue == (decimal)0.00M)
+                    return ErrorsMessages.Required;
+            }
 
             var validationContext = new ValidationContext(this, null, null);
             validationContext.MemberName = propertyName;

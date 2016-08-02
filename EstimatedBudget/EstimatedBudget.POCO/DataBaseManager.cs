@@ -32,15 +32,19 @@ namespace EstimatedBudget.POCO
                         Wording VARCHAR(200) NOT NULL
                     );
 
-                    CREATE TABLE Levy(
+                    CREATE TABLE Transfer(
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         Wording VARCHAR(200) NOT NULL,
                         Description VARCHAR(300) NULL,
                         Price decimal(8,2) NOT NULL,
                         DateL Date NOT NULL,
+                        Way BOOLEAN,
                         F_Code VARCHAR(4) NULL,
                         C_Id INTEGER NOT NULL,
                         B_Code int NOT NULL,
+                        B_CodeBeneficiary int NULL,
+                        Beneficiary VARCHAR(50) NULL,
+                        FOREIGN KEY(B_CodeBeneficiary) REFERENCES BankAccount(Code)  ON DELETE CASCADE,
                         FOREIGN KEY(B_Code) REFERENCES BankAccount(Code)  ON DELETE CASCADE,
                         FOREIGN KEY(C_Id) REFERENCES Category(Id) ON DELETE CASCADE,
                         FOREIGN KEY(F_Code) REFERENCES Frequency(Code) ON DELETE CASCADE
@@ -57,7 +61,7 @@ namespace EstimatedBudget.POCO
                         L_Id int NULL,
                         FOREIGN KEY(B_Code) REFERENCES BankAccount(Code)  ON DELETE CASCADE,
                         FOREIGN KEY(C_Id) REFERENCES Category(Id)  ON DELETE CASCADE,
-                        FOREIGN KEY(L_Id) REFERENCES Levy(Id) ON DELETE CASCADE
+                        FOREIGN KEY(L_Id) REFERENCES Transfer(Id) ON DELETE CASCADE
                     );
                   
                     INSERT INTO Category(Wording,Targetprice,B_Code) VALUES('Nourriture',400.00,184645511);
@@ -74,9 +78,9 @@ namespace EstimatedBudget.POCO
                     INSERT INTO Frequency(Code,Wording) VALUES('SEME','Semestriel');
                     INSERT INTO Frequency(Code,Wording) VALUES('ANN','Annuel');
 
-                    INSERT INTO Levy(Wording,Description,DateL,F_Code,C_Id,B_Code,Price) VALUES('CANAL+','','2016-08-12','IMM',3,184645511,30.00);
-                    INSERT INTO Levy(Wording,Description,DateL,F_Code,C_Id,B_Code,Price) VALUES('EDF','','2016-07-25','MENS',2,184645511,20.00);
-                    INSERT INTO Levy(Wording,Description,DateL,F_Code,C_Id,B_Code,Price) VALUES('MELANIE','','2016-08-12','IMM',3,1848451,15.00);
+                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('CANAL+','','2016-08-12','IMM',3,184645511,30.00,0,1848451,'');
+                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('EDF','','2016-07-25','MENS',2,184645511,20.00,0,184645511,'');
+                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('APL','','2016-08-12','IMM',3,1848451,15.00,1,0,'testautre');
                  
 "
                 );

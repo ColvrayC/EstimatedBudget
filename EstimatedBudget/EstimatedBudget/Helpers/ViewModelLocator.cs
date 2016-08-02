@@ -2,7 +2,7 @@
 using EstimatedBudget.ViewModels.BankAccounts;
 using EstimatedBudget.ViewModels.BudgetMonitoring;
 using EstimatedBudget.ViewModels.Categories;
-using EstimatedBudget.ViewModels.Levies;
+using EstimatedBudget.ViewModels.Transfers;
 using EstimatedBudget.ViewModels.Registrations;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
@@ -15,7 +15,7 @@ namespace EstimatedBudget.Helpers
         static IUnityContainer BudgetMonitoringContainer;
         static IUnityContainer BankAccountContainer;
         static IUnityContainer CategoryContainer;
-        static IUnityContainer LevyContainer;
+        static IUnityContainer TransferContainer;
         static IUnityContainer RegistrationContainer;
 
         static IUnityContainer MainContainer;
@@ -34,9 +34,9 @@ namespace EstimatedBudget.Helpers
             CategoryContainer.AddNewExtension<Interception>();
             CategoryContainer.RegisterType<CategoryViewModel>().Configure<Interception>().SetInterceptorFor<CategoryViewModel>(new VirtualMethodInterceptor());
 
-            LevyContainer = new UnityContainer();
-            LevyContainer.AddNewExtension<Interception>();
-            LevyContainer.RegisterType<LevyViewModel>().Configure<Interception>().SetInterceptorFor<LevyViewModel>(new VirtualMethodInterceptor());
+            TransferContainer = new UnityContainer();
+            TransferContainer.AddNewExtension<Interception>();
+            TransferContainer.RegisterType<TransferViewModel>().Configure<Interception>().SetInterceptorFor<TransferViewModel>(new VirtualMethodInterceptor());
 
             RegistrationContainer = new UnityContainer();
             RegistrationContainer.AddNewExtension<Interception>();
@@ -60,9 +60,9 @@ namespace EstimatedBudget.Helpers
         {
             get { return CategoryContainer.Resolve<CategoryViewModel>(); }
         }
-        public LevyViewModel Levy
+        public TransferViewModel Transfer
         {
-            get { return LevyContainer.Resolve<LevyViewModel>(); }
+            get { return TransferContainer.Resolve<TransferViewModel>(); }
         }
 
         public RegistrationViewModel Registration

@@ -10,7 +10,7 @@ namespace EstimatedBudget.Converters
         const string BudgetMonitoring = "BudgetMonitoringView.xaml";
         const string BankAccount = "BankAccountView.xaml";
         const string Category = "CategoryView.xaml";
-        const string Levy = "LevyView.xaml";
+        const string Transfer = "TransferView.xaml";
         const string Registration = "RegistrationView.xaml";
 
 
@@ -32,9 +32,9 @@ namespace EstimatedBudget.Converters
                     Result = Category;
                     NameFrame.Name = NameFrame.Category;
                     break;
-                case Levy:
-                    Result = Levy;
-                    NameFrame.Name = NameFrame.Levy;
+                case Transfer:
+                    Result = Transfer;
+                    NameFrame.Name = NameFrame.Transfer;
                     break;
                 case Registration:
                     Result = Registration;

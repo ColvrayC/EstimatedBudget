@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace EstimatedBudget.Converters
 {
-    class DisplayLevyConverter : IValueConverter
+    class DisplayTransferConverter : IValueConverter
     { // converter pour parametrage
         /// <summary>
         /// Affiche Champs Libre Si la propriété est != Null

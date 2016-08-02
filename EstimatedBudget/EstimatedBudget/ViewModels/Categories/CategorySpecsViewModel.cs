@@ -51,9 +51,13 @@ namespace EstimatedBudget.ViewModels.Categories
         object propertyValue = propertyInfo.GetValue(this, null);
 
         var results = new List<ValidationResult>();
+            if (propertyName == "Targetprice")
+            {
+                if ((decimal)propertyValue == (decimal)0.00M)
+                    return ErrorsMessages.Required;
+            }
 
-
-        var validationContext = new ValidationContext(this, null, null);
+            var validationContext = new ValidationContext(this, null, null);
         validationContext.MemberName = propertyName;
 
         return Validator.TryValidateProperty(propertyValue, validationContext, results) ?

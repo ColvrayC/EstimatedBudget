@@ -13,14 +13,14 @@ namespace EstimatedBudget.POCO.Models
     {
         public Frequency()
         {
-            this.Levy = new HashSet<Levy>();
+            this.Transfer = new HashSet<Transfer>();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         public string Code { get; set; }
         public string Wording { get; set; }
 
-        public virtual ICollection<Levy> Levy { get; set; }
+        public virtual ICollection<Transfer> Transfer { get; set; }
 
         public override string ToString()
         {

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace EstimatedBudget.Views
 {
     /// <summary>
-    /// Interaction logic for LevyView.xaml
+    /// Interaction logic for TransferView.xaml
     /// </summary>
-    public partial class LevyView : Page
+    public partial class TransferView : Page
     {
-        public LevyView()
+        public TransferView()
         {
             InitializeComponent();
         }

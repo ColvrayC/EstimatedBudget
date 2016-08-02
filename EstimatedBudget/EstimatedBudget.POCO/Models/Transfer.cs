@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EstimatedBudget.POCO.Models
 {
-    [Table("Levy")]
-    public partial class Levy : ICloneable
+    [Table("Transfer")]
+    public partial class Transfer : ICloneable
     {
-        public Levy()
+        public Transfer()
         {
             this.Registration = new HashSet<Registration>();
         }
@@ -23,10 +23,13 @@ namespace EstimatedBudget.POCO.Models
 
         public string Description { get; set; }
         public DateTime DateL { get; set; }
+        public bool Way { get; set; }
         public decimal Price { get; set; }
         public string F_Code { get; set; }
         public Nullable<int> C_Id { get; set; }
         public int B_Code { get; set; }
+        public Nullable<int> B_CodeBeneficiary { get; set; }
+        public string Beneficiary { get; set; }
 
         public virtual Frequency Frequency { get; set; }
         public virtual Category Category { get; set; }

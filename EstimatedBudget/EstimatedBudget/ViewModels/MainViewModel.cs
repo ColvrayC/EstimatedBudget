@@ -27,7 +27,7 @@ namespace EstimatedBudget.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            LevyDAL.CheckLevies(new Levy());
+            TransferDAL.CheckTransfers(new Transfer());
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
             if (File.Exists(PathDatabase))

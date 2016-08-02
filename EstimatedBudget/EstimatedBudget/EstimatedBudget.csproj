@@ -177,6 +177,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\CheckBoxConverter.cs" />
     <Compile Include="Converters\CheckBoxToYesNoConverter.cs" />
     <Compile Include="Converters\DisplayBoolToYesNoConverter.cs" />
     <Compile Include="Converters\DisplayLevyConverter.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Converters\FrameConverter.cs" />
     <Compile Include="Converters\SpecsVisibilityConverter.cs" />
     <Compile Include="Converters\SpecsWidthVisibilityConverter.cs" />
+    <Compile Include="Converters\VisiblityToCheckedConverter.cs" />
     <Compile Include="Errors\BooleanOrConverter.cs" />
     <Compile Include="Errors\ErrorsMessages.cs" />
     <Compile Include="Errors\ErrorsValidation.cs" />
@@ -207,8 +209,8 @@
     <Compile Include="ViewModels\BudgetMonitoring\BudgetMonitoringViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategorySpecsViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Levies\LevySpecsViewModel.cs" />
-    <Compile Include="ViewModels\Levies\LevyViewModel.cs" />
+    <Compile Include="ViewModels\Transfers\TransferSpecsViewModel.cs" />
+    <Compile Include="ViewModels\Transfers\TransferViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Registrations\RegistrationSpecsViewModel.cs" />
     <Compile Include="ViewModels\Registrations\RegistrationViewModel.cs" />
@@ -221,8 +223,8 @@
     <Compile Include="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LevyView.xaml.cs">
-      <DependentUpon>LevyView.xaml</DependentUpon>
+    <Compile Include="Views\TransferView.xaml.cs">
+      <DependentUpon>TransferView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -264,7 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behaviors\" />
-    <Folder Include="ViewModels\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Errors\ErrorTemplate.xaml">
@@ -331,7 +332,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LevyView.xaml">
+    <Page Include="Views\TransferView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -374,7 +375,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\Category.png" />
-    <Resource Include="Images\Menu\Levy.png" />
+    <Resource Include="Images\Menu\Transfer.png" />
     <Resource Include="Images\Menu\Budget.png" />
     <Resource Include="Images\Menu\Registration.png" />
   </ItemGroup>

@@ -118,7 +118,7 @@
 
                 <TextBlock Text="Défintion de l'Enregistrement" Style="{StaticResource SpecsLabelTitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" 
                            IsEnabled="{Binding Mode, Converter={StaticResource EnabledAddModeConverter}}">
-                    <Run Text="{Binding L_Id,Converter={StaticResource DisplayLevyConverter}}"/>
+                    <Run Text="{Binding L_Id,Converter={StaticResource DisplayTransferConverter}}"/>
                 </TextBlock>
 
 

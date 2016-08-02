@@ -77,19 +77,19 @@
                 </i:Interaction.Triggers>
             </Border>
 
-            <!--LEVIES -->
+            <!--Transfers -->
             <Border Grid.Row="3" Style="{StaticResource ItemMenu}">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="pack://application:,,,/Images/Menu/Levy.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Prélèvements" Style="{StaticResource TitleMenu}"/>
+                    <Image Source="pack://application:,,,/Images/Menu/Transfer.png"  Style="{StaticResource ImageMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Virements" Style="{StaticResource TitleMenu}"/>
                 </Grid>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseUp">
-                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="LevyView.xaml"/>
+                        <cmd:EventToCommand Command="{Binding Main.SelectedFrameCommand,Source={StaticResource Locator}}" CommandParameter="TransferView.xaml"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Border>

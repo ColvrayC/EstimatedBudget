@@ -8,9 +8,9 @@ using EstimatedBudget.Errors;
 using EstimatedBudget.POCO.Models;
 
 
-namespace EstimatedBudget.ViewModels.Levies
+namespace EstimatedBudget.ViewModels.Transfers
 {
-    public partial class LevyViewModel
+    public partial class TransferViewModel
     {
         /// <summary>
         /// SPECS PROPERTIES
@@ -27,8 +27,13 @@ namespace EstimatedBudget.ViewModels.Levies
         [RaisePropertyChanged]
         public virtual string Description { get; set; }
 
+        [Range(-99999.99, 99999.99, ErrorMessage = ErrorsMessages.Euro)]
+        [Required(ErrorMessage = ErrorsMessages.Required)]
         [RaisePropertyChanged]
         public virtual decimal Price { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual bool Way { get; set; }
 
         [RaisePropertyChanged]
         public virtual string F_Code { get; set; }
@@ -38,6 +43,13 @@ namespace EstimatedBudget.ViewModels.Levies
 
         [RaisePropertyChanged]
         public virtual int B_Code { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual Nullable<int> B_CodeBeneficiary { get; set; }
+
+
+        [RaisePropertyChanged]
+        public virtual string Beneficiary { get; set; }
 
         [RaisePropertyChanged]
         public virtual DateTime DateL { get; set; }
@@ -71,8 +83,37 @@ namespace EstimatedBudget.ViewModels.Levies
             object propertyValue = propertyInfo.GetValue(this, null);
 
             var results = new List<ValidationResult>();
+            if (propertyName == "F_Code")
+            {
+                if (SelectedFrequency == null)
+                    return ErrorsMessages.Required;
+            }
 
+            if (propertyName == "C_Id")
+            {
+                if (SelectedCategory == null)
+                    return ErrorsMessages.Required;
+            }
 
+            if (propertyName == "RdoBeneficiary")
+            {
+                if (RdoBeneficiary && (Beneficiary == null || (string)Beneficiary == string.Empty))
+                {
+                    Beneficiary = null;
+                }
+            }
+
+            if (propertyName == "Beneficiary")
+            {
+                if (RdoBeneficiary && (propertyValue==null || (string)propertyValue==string.Empty))
+                    return ErrorsMessages.Required;
+            }
+
+            if (propertyName == "Price")
+            {
+                if ((decimal)propertyValue == (decimal)0.00M)
+                    return ErrorsMessages.Required;
+            }
             var validationContext = new ValidationContext(this, null, null);
             validationContext.MemberName = propertyName;
 
@@ -85,7 +126,7 @@ namespace EstimatedBudget.ViewModels.Levies
             get
             {
                 
-                foreach (string property in ProprertiesName.Levy)
+                foreach (string property in ProprertiesName.Transfer)
                 {
                     if (OnValidate(property) != "")
                         return false;
@@ -98,13 +139,16 @@ namespace EstimatedBudget.ViewModels.Levies
 
         public void SpecsPropertiesToObject()
         {
-            SpecsLevy = new Levy
+            SpecsTransfer = new Transfer
             {
                 Id = this.Id,
                 Wording = this.Wording,
                 Description = this.Description,
                 DateL = this.DateL,
                 Price = this.Price,
+                Way = this.Way,
+                B_CodeBeneficiary = this.B_CodeBeneficiary,
+                Beneficiary = this.Beneficiary,
                 F_Code = this.SelectedFrequency.Code,
                 C_Id = this.SelectedCategory.Id,
                 B_Code = Global.BankAccountCode,

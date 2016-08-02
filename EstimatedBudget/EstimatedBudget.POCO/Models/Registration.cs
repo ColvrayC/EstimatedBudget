@@ -28,7 +28,7 @@ namespace EstimatedBudget.POCO.Models
 
         public virtual BankAccount BankAccount { get; set; }
         public virtual Category Category { get; set; }
-        public virtual Levy Levy { get; set; }
+        public virtual Transfer Transfer { get; set; }
 
         public object Clone()
         {
