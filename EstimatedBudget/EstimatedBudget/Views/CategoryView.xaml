@@ -82,7 +82,7 @@
 
                 <!-- Objectif Mensuelle -->
                 <TextBlock Grid.Row="4"  Text="Objectif Mensuelle :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="4" x:Name="TargetPrice" MaxLength="7" Grid.Column="1" Text="{Binding Targetprice,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}" Style="{StaticResource SpecsTextboxStyleNumber}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBox Grid.Row="4" x:Name="TargetPrice" MaxLength="10" Grid.Column="1" Text="{Binding Targetprice,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}" Style="{StaticResource SpecsTextboxStyleNumber}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 <!-- BEGIN FICHE -->
                 <Grid Grid.Row="5" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">

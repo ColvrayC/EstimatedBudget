@@ -107,7 +107,7 @@
                 <!-- Other Beneficiaray-->
                 <TextBlock x:Name="TitleOther" Grid.Row="2"  Text="Autre Compte :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"
                            Visibility="{Binding RdoCodeBeneficiary, Converter={StaticResource VisiblityToCheckedConverter},ConverterParameter=2}"/>
-                <TextBox x:Name="Other" Grid.Row="2"  MaxLength="10" Grid.Column="1" 
+                <TextBox x:Name="Other" Grid.Row="2"  MaxLength="50" Grid.Column="1" 
                          Text="{Binding Beneficiary,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
                          Visibility="{Binding RdoCodeBeneficiary, Converter={StaticResource VisiblityToCheckedConverter},ConverterParameter=2}" />
@@ -115,11 +115,11 @@
 
                 <!-- Libellé -->
                 <TextBlock Grid.Row="3"  Text="Libellé :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="3"  MaxLength="10" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBox Grid.Row="3"  MaxLength="200" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 <!-- Description -->
                 <TextBlock Grid.Row="4"  Text="Description :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="4" MaxLength="10" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBox Grid.Row="4" MaxLength="300" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 <!--Categorie -->
                 <TextBlock Grid.Row="5"  Text="Catégorie :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
@@ -155,7 +155,7 @@
 
                 <!-- Date Prélèvement -->
                 <TextBlock Grid.Row="9"  Text="Date Prélèvement :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <DatePicker Grid.Row="9"  Grid.Column="1" Width="170" HorizontalAlignment="Left" Margin="20,5,0,5" SelectedDate="{Binding DateL,ValidatesOnDataErrors=True,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{StaticResource ComboBoxErrorTemplate}"/>
+                <DatePicker Grid.Row="9" Grid.Column="1" Width="170" HorizontalAlignment="Left" Margin="20,5,0,5" SelectedDate="{Binding DateL,ValidatesOnDataErrors=True,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{StaticResource ComboBoxErrorTemplate}"/>
 
                 
 

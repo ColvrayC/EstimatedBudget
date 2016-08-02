@@ -150,7 +150,7 @@
                 
                 <!-- Description -->
                 <TextBlock Grid.Row="5"  Text="Description :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="5"  MaxLength="10" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBox Grid.Row="5"  MaxLength="300" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
 
                 
