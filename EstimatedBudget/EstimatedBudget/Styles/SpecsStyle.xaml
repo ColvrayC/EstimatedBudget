@@ -77,6 +77,7 @@
         <Setter Property="Content" Value="Annuler"/>
         <Setter Property="Height" Value="15"/>
         <Setter Property="Width" Value="120"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Margin" Value="20,0,15,0"/>
         <Setter Property="Background" Value="{DynamicResource AccentBackgroundButton}" />
         <Setter Property="Foreground" Value="{DynamicResource AccentForeColorButton}" />
@@ -87,6 +88,7 @@
         <Setter Property="Content" Value="Valider"/>
         <Setter Property="Height" Value="15"/>
         <Setter Property="Width" Value="120"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Margin" Value="0,0,30,0"/>
         <Setter Property="Background" Value="{DynamicResource AccentBackgroundButton}" />
         <Setter Property="Foreground" Value="{DynamicResource AccentForeColorButton}" />

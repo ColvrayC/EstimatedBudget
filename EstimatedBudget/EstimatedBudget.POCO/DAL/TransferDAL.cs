@@ -35,8 +35,26 @@ namespace EstimatedBudget.POCO.DAL
                 {
                     T.B_CodeBeneficiary = 0;
                 }
+
                 if (T.Beneficiary == null)
                     T.Beneficiary = string.Empty;
+
+                //If the register is Immediat
+                if(T.F_Code == "IMM")
+                {
+                    //Only register but no Add to Transfer
+
+                    //If The destination is a Exist Account
+                    if(T.B_CodeBeneficiary != 0)
+                    {
+
+                    }
+                    else //The destination is Other
+                    {
+
+                    }
+
+                }
 
                 myCnn.Execute("INSERT INTO Transfer (Wording, Description, F_Code,C_Id,DateL,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES(@Wording, @Description, @F_Code,@C_Id,@DateL,@B_Code,@Price,@Way,@B_CodeBeneficiary,@Beneficiary)", new
                 {
@@ -69,23 +87,26 @@ namespace EstimatedBudget.POCO.DAL
             }
         }
 
-        public static void CheckTransfers(Transfer L)
+        public static void CheckTransfersNotRegister()
         {
-          /*  var Today = DateTime.Now.ToString("yyyy-MM-dd");
+            var Today = DateTime.Now.ToString("yyyy-MM-dd");
 
             using (var myCnn = Cnn.GetOpenConnection())
             {
                 //Inférieur égale à la date d'aujourd'hui
-                var Transfers = myCnn.GetList<Transfer>("where DateL <= TO_DATE(?, '"+  Today + "')");
+                var Transfers = myCnn.GetList<Transfer>("where date(DateL) < date('"+ Today +"')");
 
                 var Registrations = RegistrationDAL.Load();
                 foreach(var Transfer in Transfers)
-                {*/
+                {
                     /*Verifier si l'enregisrement n'a pas été fait par 
                         * la date et 
-                        * si il 'ya un code L_Id 
+                        * si il 'ya un code T_Id 
                         * categorie et */
-                   /* Registration R = Registrations.Where(x => x.DateR == Transfer.DateL && x.L_Id != 0 && x.C_Id == Transfer.C_Id).SingleOrDefault();
+                    Registration R = Registrations.Where(x => 
+                    x.DateR == Transfer.DateL 
+                    && x.T_Id != 0 
+                    && x.C_Id == Transfer.C_Id).SingleOrDefault();
 
                     //register
                     if(R == null)
@@ -93,7 +114,7 @@ namespace EstimatedBudget.POCO.DAL
                         RegistrationDAL.Save(new Registration
                         {
                             DateR = Transfer.DateL,
-                            L_Id = Transfer.Id,
+                            T_Id = Transfer.Id,
                             C_Id = Transfer.C_Id,
                             Price = Transfer.Price,
                             B_Code = Transfer.B_Code,
@@ -103,7 +124,7 @@ namespace EstimatedBudget.POCO.DAL
                     }
                 }
 
-            }*/
+            }
         }
     }
 }

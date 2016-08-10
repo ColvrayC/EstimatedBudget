@@ -43,7 +43,7 @@ namespace EstimatedBudget.ViewModels.Registrations
 
 
         [RaisePropertyChanged]
-        public virtual int? L_Id { get; set; }
+        public virtual int? T_Id { get; set; }
 
         [RaisePropertyChanged]
         public virtual int B_Code { get; set; }
@@ -117,7 +117,7 @@ namespace EstimatedBudget.ViewModels.Registrations
                 Price = this.Price,
                 B_Code = Global.BankAccountCode,
                 C_Id = this.SelectedCategory.Id,
-                L_Id = this.L_Id,
+                T_Id = this.T_Id,
                 Category = this.SelectedCategory
             };
         }

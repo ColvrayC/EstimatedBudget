@@ -140,7 +140,7 @@ namespace EstimatedBudget.ViewModels.Registrations
                     this.SelectedCategory = _SpecsRegistration.Category;
                     this.B_Code = Global.BankAccountCode;
                     this.C_Id = _SpecsRegistration.C_Id;
-                    this.L_Id = _SpecsRegistration.L_Id;
+                    this.T_Id = _SpecsRegistration.T_Id;
                     if (ActiveMode != Modes.ADD)
                         ActiveMode = Modes.MODIFICATION;
                 }

@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Errors/ErrorTemplate.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/FlyOutBankAccountStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Styles/ProgressBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         
       <!-- CONVERT -->

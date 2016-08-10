@@ -76,8 +76,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Border>
-
-            <!--Transfers -->
+            
+            <!--Transfer -->
             <Border Grid.Row="3" Style="{StaticResource ItemMenu}">
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -85,7 +85,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="pack://application:,,,/Images/Menu/Transfer.png"  Style="{StaticResource ImageMenu}"/>
-                    <TextBlock Grid.Column="1" Text="Virements" Style="{StaticResource TitleMenu}"/>
+                    <TextBlock Grid.Column="1" Text="Transferts" Style="{StaticResource TitleMenu}"/>
                 </Grid>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseUp">
@@ -93,6 +93,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Border>
+            
 
             <!-- CATEGORIES -->
             <Border Grid.Row="4" Style="{StaticResource ItemMenu}">

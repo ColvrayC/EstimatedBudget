@@ -27,10 +27,11 @@ namespace EstimatedBudget.POCO.DAL
         {
             using (var myCnn = Cnn.GetOpenConnection())
             {
-                myCnn.Execute("INSERT INTO CATEGORY (Wording, Targetprice) VALUES(@Wording, @Targetprice)", new
+                myCnn.Execute("INSERT INTO CATEGORY (Wording, Targetprice,B_Code) VALUES(@Wording, @Targetprice,@B_Code)", new
                 {
                     C.Wording,
-                    C.Targetprice
+                    C.Targetprice,
+                    C.B_Code
                 });  
             }
 

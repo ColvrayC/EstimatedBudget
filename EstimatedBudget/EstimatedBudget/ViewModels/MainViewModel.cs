@@ -27,7 +27,7 @@ namespace EstimatedBudget.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            TransferDAL.CheckTransfers(new Transfer());
+           
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
             if (File.Exists(PathDatabase))
@@ -37,7 +37,8 @@ namespace EstimatedBudget.ViewModels
             }
             else
                 return;
-             
+
+            TransferDAL.CheckTransfersNotRegister();
             PathCurrentFrame = "BankAccountView.xaml";
             NavigationName = NameFrame.BankAccount;
             BankAccounts = new ObservableCollection<BankAccount>(BankAccountDAL.Load());

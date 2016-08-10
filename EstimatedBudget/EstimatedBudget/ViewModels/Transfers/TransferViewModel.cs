@@ -6,11 +6,6 @@ using EstimatedBudget.POCO.DAL;
 using System.ComponentModel;
 using System;
 using GalaSoft.MvvmLight.Command;
-using System.Reflection;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using EstimatedBudget.Errors;
-using System.Collections;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace EstimatedBudget.ViewModels.Transfers

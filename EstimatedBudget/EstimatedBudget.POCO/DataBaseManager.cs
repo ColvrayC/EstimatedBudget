@@ -58,10 +58,10 @@ namespace EstimatedBudget.POCO
                         Price decimal(8,2) NOT NULL,
                         B_Code int NOT NULL,
                         C_Id INTEGER NOT NULL,
-                        L_Id int NULL,
+                        T_Id int NULL,
                         FOREIGN KEY(B_Code) REFERENCES BankAccount(Code)  ON DELETE CASCADE,
                         FOREIGN KEY(C_Id) REFERENCES Category(Id)  ON DELETE CASCADE,
-                        FOREIGN KEY(L_Id) REFERENCES Transfer(Id) ON DELETE CASCADE
+                        FOREIGN KEY(T_Id) REFERENCES Transfer(Id) ON DELETE CASCADE
                     );
                   
                     INSERT INTO Category(Wording,Targetprice,B_Code) VALUES('Nourriture',400.00,184645511);

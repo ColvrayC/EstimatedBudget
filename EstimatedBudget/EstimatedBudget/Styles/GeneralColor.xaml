@@ -21,8 +21,8 @@
     <Color x:Key="AccentDarkGray">#373d4a</Color>
     <Color x:Key="AccentRed">#ff0000</Color>
     <Color x:Key="AccentWhite">#FFFFFF</Color>
-    <Color x:Key="AccentBlueDeclic">#1774cd</Color>
-    <Color x:Key="AccentBlueDeclicLight">#B31774cd</Color>
+    <Color x:Key="AccentBlue">#1774cd</Color>
+    <Color x:Key="AccentBlueLight">#B31774cd</Color>
 
     <Color x:Key="AccentColorGreyBackgroundTab">#535353</Color>
 
@@ -56,7 +56,7 @@
     <SolidColorBrush x:Key="AccentBackgroundMenu" Color="{StaticResource AccentDarkGray}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForegroundMenu" Color="{StaticResource AccentWhite}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentSpaceMenu" Color="{StaticResource AccentWhite}" options:Freeze="True" />
-    <SolidColorBrush x:Key="AccentHoverBackgroundMenu" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentHoverBackgroundMenu" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <!--END MENU -->
 
     <!-- BEGIN FRAME -->
@@ -66,16 +66,16 @@
     <SolidColorBrush x:Key="AccentBackgroundHeader" Color="{StaticResource AccentDarkGray}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentBackgroundMouseOver" Color="{StaticResource AccentMediumGrey}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForeColorHeader" Color="{StaticResource AccentWhite}" options:Freeze="True" />
-    <SolidColorBrush x:Key="AccentArrow" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentArrow" Color="{StaticResource AccentBlue}" options:Freeze="True" />
 
-    <SolidColorBrush x:Key="MetroDataGrid.HighlightBrush" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="MetroDataGrid.HighlightBrush" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <!-- La ligne est séléctionnée-->
     <SolidColorBrush x:Key="MetroDataGrid.HighlightTextBrush" Color="{StaticResource AccentWhite}" options:Freeze="True" />
     <!-- Couleur texte séléctionné-->
-    <SolidColorBrush x:Key="MetroDataGrid.MouseOverHighlightBrush" Color="{StaticResource AccentBlueDeclicLight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="MetroDataGrid.MouseOverHighlightBrush" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <!-- La ligne est séléctionnée + la souris dessus -->
     <SolidColorBrush x:Key="MetroDataGrid.FocusBorderBrush" Color="{StaticResource AccentColor}" options:Freeze="True" />
-    <SolidColorBrush x:Key="MetroDataGrid.InactiveSelectionHighlightBrush" Color="{StaticResource AccentBlueDeclicLight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="MetroDataGrid.InactiveSelectionHighlightBrush" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <SolidColorBrush x:Key="MetroDataGrid.InactiveSelectionHighlightTextBrush" Color="{StaticResource AccentWhite}" options:Freeze="True" />
     <!--END DATAGRID -->
 
@@ -89,11 +89,11 @@
 
     <!--BEGIN BUTTON -->
     <SolidColorBrush x:Key="AccentBackgroundButtonMouvement" Color="Gray" options:Freeze="True" />
-    <SolidColorBrush x:Key="AccentBackgroundButton" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentBackgroundButton" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForeColorButton" Color="{StaticResource AccentWhite}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentBackgroundButtonIsPressed" Color="{StaticResource AccentMediumGrey}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForeColorButtonIsPressed" Color="{StaticResource AccentWhite}" options:Freeze="True" />
-    <SolidColorBrush x:Key="AccentBackgroundButtonIsOver" Color="{StaticResource AccentBlueDeclicLight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentBackgroundButtonIsOver" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForeColorButtonIsOver" Color="{StaticResource AccentWhite}" options:Freeze="True" />
     <!-- END BUTTON -->
 
@@ -114,10 +114,10 @@
     <!--BEGIN FLYOUT ENTREPOT-->
     <SolidColorBrush x:Key="AccentBackgroundFlyOutEntrepot" Color="{StaticResource AccentDarkGray}" options:Freeze="True" />
     <SolidColorBrush x:Key="AccentForeColorFlyOutEntrepot" Color="{StaticResource AccentWhite}" options:Freeze="True" />
-    <SolidColorBrush x:Key="AccentButtonFlyOutEntrepot" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentButtonFlyOutEntrepot" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <!-- END FLYOUT -->
 
     <!-- COMBOBOX -->
-    <SolidColorBrush x:Key="AccentBackgroundItemComboBoxMouseHover" Color="{StaticResource AccentBlueDeclic}" options:Freeze="True" />
+    <SolidColorBrush x:Key="AccentBackgroundItemComboBoxMouseHover" Color="{StaticResource AccentBlue}" options:Freeze="True" />
     <!-- END COMBOBOX -->
 </ResourceDictionary>

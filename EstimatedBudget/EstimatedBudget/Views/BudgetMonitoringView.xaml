@@ -5,17 +5,120 @@
       xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cmd="http://www.galasoft.ch/mvvmlight"
       xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
       xmlns:Converter="clr-namespace:EstimatedBudget.Converters"
       xmlns:local="clr-namespace:EstimatedBudget.Views"
       Title="BudgetMonitoringView"
+      UseLayoutRounding="True"
       x:Name="Frame"
-      Background="{StaticResource AccentBackgroundColorFrame}"  
-      DataContext="{Binding Category, Source={StaticResource Locator}}"
-      dialogs:DialogParticipation.Register="{Binding}">
+     
 
+      Background="{StaticResource AccentBackgroundColorFrame}"  
+      DataContext="{Binding BudgetMonitoring, Source={StaticResource Locator}}"
+      dialogs:DialogParticipation.Register="{Binding}">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <!-- MAIN GRID-->
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="0,1,0,1" Background="White" Grid.Row="1" Grid.ColumnSpan="4" UseLayoutRounding="True"  >
+            <Border.Effect>
+                <DropShadowEffect Color="Black"  BlurRadius="20" RenderingBias="Performance" ShadowDepth="0" />
+            </Border.Effect>
+            <!-- GRID MIDDLE BAR-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- GRID CONTENT -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Title -->
+                    <TextBlock UseLayoutRounding="True" Text="SUIVI BUDGETS" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" FontSize="32" Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Background="White" Height="22" Width="Auto" Margin="0,0,0,30">
+                        <Button Background="Transparent" Command="{Binding PreviousMonthCommand}">
+                            <Image Source="pack://application:,,,/Images/ArrowLeft.png" Height="12" Width="12"  HorizontalAlignment="Left" Cursor="Hand" Margin="0,0,20,0" />
+                        </Button>
+                        <TextBlock Text="{Binding DisplayDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center"/>
+                        <Button Background="Transparent" Command="{Binding NextMonthCommand}">
+                            <Image Source="pack://application:,,,/Images/ArrowRight.png" Height="12" Width="12" HorizontalAlignment="Right" Cursor="Hand" Margin="20,0,0,0"/>
+                        </Button>
+                    </StackPanel>
+                  
+
+                    <StackPanel Orientation="Horizontal"  Grid.Row="2" HorizontalAlignment="Center" Height="30" Width="190">
+                        <RadioButton IsChecked="{Binding NormalDisplay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Content="Normal" GroupName="1" Grid.Row="1" FontSize="13" Cursor="Hand"/>
+                        <RadioButton IsChecked="{Binding AnticipateDisplay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Content="Anticipé" GroupName="1" Grid.Row="1" FontSize="13" Cursor="Hand" Margin="30,0,0,0"/>
+                    </StackPanel>
+                    
+                    <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,80"/>
+                    
+                    <DataGrid UseLayoutRounding="True" Grid.Row="4" HeadersVisibility="None" IsEnabled="False" SelectionUnit="FullRow" RowHeight="40"  FontSize="15"  IsReadOnly="True" Margin="0,0,0,60" 
+                              SelectionMode="Single" AutoGenerateColumns="False" ItemsSource="{Binding LstBudgetMonitoring,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
+
+                        <!-- Progress Bar Columns -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=WordingCategory}"/>
+                            <DataGridTemplateColumn  Width="Auto" Visibility="Visible" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ProgressBar Value="{Binding Path=HundredPerCent, Mode=OneWay}" IsIndeterminate="False" VerticalAlignment="Top" Margin="20,4,0,0" Minimum="0" Background="Black"  Height="12" Width="100" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding Path=HundredPerCent,StringFormat={}{0} %  -}" >
+
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=RegistrationsPrice,StringFormat={}  {0}€  /}">
+
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=TargetPrice,StringFormat={} {0}€}"/>
+                            
+
+                        </DataGrid.Columns>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False" >
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+                    </DataGrid>
+                </Grid>
+               
+            </Grid>
+        </Border>
     </Grid>
 </Page>

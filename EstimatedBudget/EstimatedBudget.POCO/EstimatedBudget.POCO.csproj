@@ -83,12 +83,14 @@
   <ItemGroup>
     <Compile Include="ConnectionProvider.cs" />
     <Compile Include="DAL\BankAccountDAL.cs" />
+    <Compile Include="DAL\BudgetMonitoringDAL.cs" />
     <Compile Include="DAL\CategoryDAL.cs" />
     <Compile Include="DAL\TransferDAL.cs" />
     <Compile Include="DAL\FrequencyDAL.cs" />
     <Compile Include="DAL\RegistrationDAL.cs" />
     <Compile Include="DataBaseManager.cs" />
     <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Models\BusinessBudgetMonitoring.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="Models\Frequency.cs" />

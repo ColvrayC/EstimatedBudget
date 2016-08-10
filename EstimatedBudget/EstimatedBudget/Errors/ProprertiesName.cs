@@ -11,6 +11,6 @@ namespace EstimatedBudget.Errors
         public static string[] BankAccount = { "Code", "Wording","Description", "Investment"};
         public static string[] Category = { "Id", "Wording", "Targetprice"};
         public static string[] Transfer = { "Id", "Wording","Description","DateL","F_Code","C_Id","Price","Way", "Beneficiary" };
-        public static string[] Registration = { "Id", "Wording", "Description", "DateR", "Price","B_Code","C_Id","L_Id" };
+        public static string[] Registration = { "Id", "Wording", "Description", "DateR", "Price","B_Code","C_Id","T_Id" };
     }
 }

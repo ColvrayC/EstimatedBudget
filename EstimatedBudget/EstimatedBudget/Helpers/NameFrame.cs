@@ -13,7 +13,7 @@ namespace EstimatedBudget.Helpers
 
         public const string BankAccount = "Comptes Bancaires";
         public const string Category = "Catégorie";
-        public const string Transfer = "Prélèvements";
+        public const string Transfer = "Transferts";
         public const string Registration = "Enregistrements";
         public const string BudgetMonitoring = "Suivi Budgets";
     }

@@ -24,7 +24,7 @@ namespace EstimatedBudget.POCO.Models
         public decimal Price { get; set; }
         public int B_Code { get; set; }
         public Nullable<int> C_Id { get; set; }
-        public int? L_Id { get; set; }
+        public int? T_Id { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
         public virtual Category Category { get; set; }

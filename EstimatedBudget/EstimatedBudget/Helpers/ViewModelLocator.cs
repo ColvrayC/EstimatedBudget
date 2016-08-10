@@ -4,6 +4,7 @@ using EstimatedBudget.ViewModels.BudgetMonitoring;
 using EstimatedBudget.ViewModels.Categories;
 using EstimatedBudget.ViewModels.Transfers;
 using EstimatedBudget.ViewModels.Registrations;
+using EstimatedBudget.ViewModels.Transfers;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
@@ -37,6 +38,7 @@ namespace EstimatedBudget.Helpers
             TransferContainer = new UnityContainer();
             TransferContainer.AddNewExtension<Interception>();
             TransferContainer.RegisterType<TransferViewModel>().Configure<Interception>().SetInterceptorFor<TransferViewModel>(new VirtualMethodInterceptor());
+
 
             RegistrationContainer = new UnityContainer();
             RegistrationContainer.AddNewExtension<Interception>();
