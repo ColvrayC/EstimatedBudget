@@ -342,6 +342,7 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>EstimatedBudget.Primary_output</td><td>{2613CFDA-E1B6-42B0-8645-C855AAEBFB00}</td><td>INSTALLDIR</td><td>2</td><td/><td>estimatedbudget.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{54848C05-35CE-41D5-975E-1DDAFD5D343B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1051,6 +1052,7 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>EstimatedBudget.Primary_output</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1867,6 +1869,7 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>EstimatedBudget.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 	</table>
 
 	<table name="File">
@@ -2025,6 +2028,7 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>EstimatedBudget.Primary_output</td><td/><td/><td>_3048F370_2037_4261_A88B_03FCE44F53B4_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_F081EF57_4E73_44C8_849E_313F417C69B1_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3834,8 +3838,8 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\Camille\Documents\Icone.ico</td><td>0</td></row>
-		<row><td>_Built_D7644FFE687943C2A007710C2D52EAA8.exe</td><td/><td>C:\Users\Camille\Documents\Icone.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\Camille\Downloads\money.ico</td><td>0</td></row>
+		<row><td>_Built_B7AC266FBA6E4CA5BEC971C588000FEF.exe</td><td/><td>C:\Users\Camille\Downloads\money.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3968,7 +3972,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{9A7D1256-A382-4788-A8DA-25F1924C1552}</td></row>
 		<row><td>ISUSSignature</td><td>{600D4C13-F3A0-42FB-8E0F-5C7CAE1F2EA3}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewObjects,viewUI,viewTextMessages,viewSystemSearch,viewCustomActions,viewRelease</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewObjects,viewUI,viewTextMessages,viewSystemSearch,viewCustomActions,viewRelease,viewProject,viewUpdateService,viewShortcuts,viewRegistry,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewVRoots,viewUpgradePaths,viewServices</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4509,7 +4513,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>_Built</td><td>suivib_1_suivi_budgets</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>EstimatedBudget.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_D7644FFE687943C2A007710C2D52EAA8.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>suivib_1_suivi_budgets</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>EstimatedBudget.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_B7AC266FBA6E4CA5BEC971C588000FEF.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

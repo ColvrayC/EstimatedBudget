@@ -107,12 +107,24 @@ namespace EstimatedBudget.ViewModels.Transfers
             {
                 if (RdoBeneficiary && (propertyValue==null || (string)propertyValue==string.Empty))
                     return ErrorsMessages.Required;
+                if (RdoBeneficiary && (string)propertyValue == Global.BankAccountCode.ToString())
+                    return ErrorsMessages.Required;
+            }
+            if (propertyName == "SelectedBankAccount")
+            {
+                if (propertyValue != null)
+                {
+                    if (!RdoBeneficiary && (string)propertyValue.ToString() == Global.BankAccountCode.ToString())
+                        return "Impossible d'avoir le même Emetteur/Destinataire.";
+                }
             }
 
             if (propertyName == "Price")
             {
                 if ((decimal)propertyValue == (decimal)0.00M)
                     return ErrorsMessages.Required;
+                if ((decimal)propertyValue < (decimal)0.00M)
+                    return ErrorsMessages.NumericNegative;
             }
             var validationContext = new ValidationContext(this, null, null);
             validationContext.MemberName = propertyName;

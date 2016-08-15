@@ -36,7 +36,7 @@ namespace EstimatedBudget.POCO
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         Wording VARCHAR(200) NOT NULL,
                         Description VARCHAR(300) NULL,
-                        Price decimal(8,2) NOT NULL,
+                        Price decimal(7,2) NOT NULL,
                         DateL Date NOT NULL,
                         Way BOOLEAN,
                         F_Code VARCHAR(4) NULL,
@@ -55,7 +55,8 @@ namespace EstimatedBudget.POCO
                         Wording VARCHAR(200) NOT NULL,
                         Description VARCHAR(300) NULL,
                         DateR Date NOT NULL,
-                        Price decimal(8,2) NOT NULL,
+                        Price decimal(10,2) NOT NULL,
+                        Way BOOLEAN,
                         B_Code int NOT NULL,
                         C_Id INTEGER NOT NULL,
                         T_Id int NULL,
@@ -79,7 +80,7 @@ namespace EstimatedBudget.POCO
                     INSERT INTO Frequency(Code,Wording) VALUES('ANN','Annuel');
 
                     INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('CANAL+','','2016-08-12','IMM',3,184645511,30.00,0,1848451,'');
-                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('EDF','','2016-07-25','MENS',2,184645511,20.00,0,184645511,'');
+                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('EDF','','2016-05-25','MENS',2,184645511,20.00,0,1848451,'');
                     INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('APL','','2016-08-12','IMM',3,1848451,15.00,1,0,'testautre');
                  
 "

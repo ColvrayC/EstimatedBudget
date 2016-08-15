@@ -27,7 +27,7 @@ namespace EstimatedBudget.ViewModels.Categories
     [RaisePropertyChanged]
     public virtual decimal Targetprice { get; set; }
 
-    [RaisePropertyChanged]
+        [RaisePropertyChanged]
     public virtual int B_Code { get; set; }
 
         /// <summary>
@@ -55,6 +55,8 @@ namespace EstimatedBudget.ViewModels.Categories
             {
                 if ((decimal)propertyValue == (decimal)0.00M)
                     return ErrorsMessages.Required;
+                if ((decimal)propertyValue < (decimal)0.00M)
+                    return ErrorsMessages.NumericNegative;
             }
 
             var validationContext = new ValidationContext(this, null, null);

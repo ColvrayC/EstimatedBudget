@@ -21,6 +21,7 @@ namespace EstimatedBudget.POCO.Models
         public string Wording { get; set; }
         public string Description { get; set; }
         public DateTime DateR { get; set; }
+        public bool Way { get; set; }
         public decimal Price { get; set; }
         public int B_Code { get; set; }
         public Nullable<int> C_Id { get; set; }

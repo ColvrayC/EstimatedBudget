@@ -35,6 +35,8 @@
             <Converter:DisplayTransferConverter x:Key="DisplayTransferConverter"/>
             <Converter:CheckBoxConverter x:Key="CheckBoxConverter"/>
             <Converter:VisiblityToCheckedConverter x:Key="VisiblityToCheckedConverter"/>
+            <Converter:MoneyToNegativeConverter x:Key="MoneyToNegativeConverter"/>
+            <Converter:EnabledTransferConverter x:Key="EnabledTransferConverter"/>
             <ViewModel:ViewModelLocator x:Key="Locator" />
     </ResourceDictionary>
   </Application.Resources>

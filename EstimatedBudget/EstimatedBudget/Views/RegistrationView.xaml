@@ -75,7 +75,13 @@
 
             <DataGrid.Columns>
                 <UC:DataGridEditColumn/>
-                <DataGridTextColumn Header="Prix" CanUserSort="False" Binding="{Binding Path=Price, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}">
+                <DataGridTextColumn Header="Prix" CanUserSort="False" >
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource MoneyToNegativeConverter}" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" >
+                            <Binding Path="Price" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                            <Binding Path="Way" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
                     <TextBlock.TextAlignment>
                         Right
                     </TextBlock.TextAlignment>
@@ -125,15 +131,20 @@
              
                 <!-- Libellé -->
                 <TextBlock Grid.Row="1"  Text="Libellé :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="1"  MaxLength="200" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBox Grid.Row="1"  MaxLength="200" Grid.Column="1" Text="{Binding Wording,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
+                <!-- Way -->
+                <TextBlock Grid.Row="2"  Text="Transfert :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <RadioButton Grid.Row="2" Name="RdoNegative" Grid.Column="1" Content="Payé"   GroupName="2" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}" IsChecked="{Binding Way, Converter={StaticResource CheckBoxConverter},ConverterParameter=2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0"/>
+                <RadioButton BorderThickness="2"   Grid.Row="2" Grid.Column="1" Content="Reçus" GroupName="2" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}" IsChecked="{Binding Way, Converter={StaticResource CheckBoxConverter},ConverterParameter=1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0"/>
+               
                 <!-- Price -->
-                <TextBlock Grid.Row="2"  Text="Prix :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="2" MaxLength="10" Grid.Column="1" Text="{Binding Price,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}" Style="{StaticResource SpecsTextboxStyleText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBlock Grid.Row="3"  Text="Prix :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="3" MaxLength="10" Grid.Column="1" Text="{Binding Price,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}', ConverterCulture={x:Static sysglb:CultureInfo.CurrentUICulture}}" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}" Style="{StaticResource SpecsTextboxStyleText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 <!-- Categorie -->
-                <TextBlock Grid.Row="3"  Text="Catégorie :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <ComboBox Width="170" Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboStyle}" 
+                <TextBlock Grid.Row="4"  Text="Catégorie :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <ComboBox Width="170" Grid.Row="4" Grid.Column="1" Style="{StaticResource ComboStyle}" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}"
                           ItemsSource="{Binding CategoriesItems}" 
                           SelectedItem="{Binding SelectedCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True}"
                           Validation.ErrorTemplate="{StaticResource ComboBoxErrorTemplate}"
@@ -143,19 +154,19 @@
                           SelectedIndex="0"/>
                 
                 <!-- Date -->
-                <TextBlock Grid.Row="4"  Text="Date :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <DatePicker Grid.Row="4" Width="170" HorizontalAlignment="Left" Margin="20,5,0,5"  Grid.Column="1" SelectedDate="{Binding DateR,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBlock Grid.Row="5"  Text="Date :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <DatePicker Grid.Row="5" Width="170" HorizontalAlignment="Left" Margin="20,5,0,5" IsEnabled="{Binding T_Id,Converter={StaticResource EnabledTransferConverter}}"  Grid.Column="1" SelectedDate="{Binding DateR,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
                 
                 
                 <!-- Description -->
-                <TextBlock Grid.Row="5"  Text="Description :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
-                <TextBox Grid.Row="5"  MaxLength="300" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
+                <TextBlock Grid.Row="6"  Text="Description :" Style="{StaticResource SpecsLabelStyle}" Margin="20,8,30,1"/>
+                <TextBox Grid.Row="6"  MaxLength="300" Grid.Column="1" Text="{Binding Description,ValidatesOnDataErrors=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SpecsTextboxStyleLongText}" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"/>
 
 
                 
                 <!-- BEGIN FICHE -->
-                <Grid Grid.Row="6" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">
+                <Grid Grid.Row="7" Grid.Column="1" Margin="0,20,0,10" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>

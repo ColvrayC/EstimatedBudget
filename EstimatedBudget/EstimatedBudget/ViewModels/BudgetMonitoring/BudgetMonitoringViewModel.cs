@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using MahApps.Metro.Controls.Dialogs;
 using EstimatedBudget.POCO.Models;
+using System.Linq;
 
 namespace EstimatedBudget.ViewModels.BudgetMonitoring
 {
@@ -22,12 +23,17 @@ namespace EstimatedBudget.ViewModels.BudgetMonitoring
         /// </summary>
         public BudgetMonitoringViewModel()
         {
-            NormalDisplay = true;
-            LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, DateTime.Now));
             DisplayDate = DateTime.Now.ToString("MMMM yyyy").ToUpper();
             NormalDisplay = true;
 
-            //Commands Init
+            //TotalMoney
+            foreach(var R in RegistrationDAL.Load(FilterBankAccount))
+            {
+                if (!R.Way)
+                    TotalMoney -= R.Price;
+                else
+                    TotalMoney += R.Price;
+            }
             PreviousMonthCommand = new RelayCommand(PreviousMonth);
             NextMonthCommand = new RelayCommand(NextMonth);
         }
@@ -38,18 +44,28 @@ namespace EstimatedBudget.ViewModels.BudgetMonitoring
         public void PreviousMonth()
         {
            var Date = DateTime.Parse(DisplayDate).AddMonths(-1);
-           LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date));
-           DisplayDate = Date.ToString("MMMM yyyy").ToUpper();
+            if (AnticipateDisplay)
+                LstBudgetMonitoring = Anticipated(Date);
+            else
+                LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date));
+
+            DisplayDate = Date.ToString("MMMM yyyy").ToUpper();
         }
 
         public void NextMonth()
         {
             var Date = DateTime.Parse(DisplayDate).AddMonths(1);
-            LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date));
+            if (AnticipateDisplay)
+                LstBudgetMonitoring = Anticipated(Date);
+            else
+                LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date));
             DisplayDate = Date.ToString("MMMM yyyy").ToUpper();
         }
 
-
+        public ObservableCollection<BusinessBudgetMonitoring> Anticipated(DateTime Date)
+        {
+            return new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date,true));
+        }
         /// <summary>
         /// COMMANDS
         /// </summary>
@@ -65,13 +81,34 @@ namespace EstimatedBudget.ViewModels.BudgetMonitoring
         public virtual ObservableCollection<BusinessBudgetMonitoring> LstBudgetMonitoring { get; set; }
 
         [RaisePropertyChanged]
-        public bool NormalDisplay { get; set; }
+        public bool NormalDisplay {
+            get { return _NormalDisplay; }
+            set {
+                _NormalDisplay = value;
+                var Date = DateTime.Parse(DisplayDate);
+                if (value)
+                    LstBudgetMonitoring = new ObservableCollection<BusinessBudgetMonitoring>(BudgetMonitoringDAL.Load(FilterBankAccount, Date));
+            }
+        }
+        private bool _NormalDisplay;
 
         [RaisePropertyChanged]
-        public bool AnticipateDisplay { get; set; }
-
+        public bool AnticipateDisplay
+        {
+            get { return _AnticipateDisplay; }
+            set {
+                _AnticipateDisplay = value;
+                var Date =DateTime.Parse(DisplayDate);
+                if(value)
+                    LstBudgetMonitoring = Anticipated(Date);
+                }
+        }
+        private bool _AnticipateDisplay;
         [RaisePropertyChanged]
         public virtual string DisplayDate { get; set; }
+
+        [RaisePropertyChanged]
+        public virtual decimal TotalMoney { get; set; }
 
         public void Load()
         {

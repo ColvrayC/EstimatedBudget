@@ -7,7 +7,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:UC="clr-namespace:EstimatedBudget.UserControls"
         mc:Ignorable="d"
-        Title="MainView" 
+        Title="Suivi Budget - By EnkiNahash" 
         FontSize="14"
         ShowTitleBar="True"
         WindowStartupLocation="CenterScreen"
@@ -50,14 +50,12 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <!-- Content Border Top -->
             <Grid.Background >
                 <SolidColorBrush Color="#1874cd" />
             </Grid.Background>
-
+            <TextBlock Text="Gestion Suivi Budgets" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
         </Grid>
 
 

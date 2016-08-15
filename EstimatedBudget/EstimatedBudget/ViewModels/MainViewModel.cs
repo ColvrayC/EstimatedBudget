@@ -27,7 +27,7 @@ namespace EstimatedBudget.ViewModels
         /// </summary>
         public MainViewModel()
         {
-           
+            
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
             if (File.Exists(PathDatabase))
@@ -38,8 +38,7 @@ namespace EstimatedBudget.ViewModels
             else
                 return;
 
-            TransferDAL.CheckTransfersNotRegister();
-            PathCurrentFrame = "BankAccountView.xaml";
+          //  PathCurrentFrame = "NeutralView.xaml";
             NavigationName = NameFrame.BankAccount;
             BankAccounts = new ObservableCollection<BankAccount>(BankAccountDAL.Load());
             OpenFlyOutBankAccountCommand = new RelayCommand(ShowFlyOutBankAccount);
@@ -98,6 +97,7 @@ namespace EstimatedBudget.ViewModels
         //FlyOut for Selected BankAccount
         public void ShowFlyOutBankAccount()
         {
+            
             if (OpenFlyOutBankAccount)
             {
                 OpenFlyOutBankAccount = false;
@@ -105,6 +105,11 @@ namespace EstimatedBudget.ViewModels
                 Global.BankAccountCode = SelectedBankAccount.Code;
                 TitleBankAccount = SelectedBankAccount.Description;
                 SubTitleBankAccount = SelectedBankAccount.Code + " " + SelectedBankAccount.Wording;
+                string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
+                TransferDAL.Action(RegistrationDAL.Load(FilterBankAccount), TransferDAL.Load(Where: FilterBankAccount));
+                //Load Anticipated
+                TransferDAL.Action(RegistrationDAL.Load(FilterBankAccount), TransferDAL.Load(Where: FilterBankAccount),true);
+                PathCurrentFrame = "NeutralView.xaml";
             }
             else
             {

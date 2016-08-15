@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System;
 using GalaSoft.MvvmLight.Command;
 using MahApps.Metro.Controls.Dialogs;
+using System.Linq;
 
 namespace EstimatedBudget.ViewModels.Transfers
 {
@@ -58,6 +59,11 @@ namespace EstimatedBudget.ViewModels.Transfers
                     Transfers[index] = SpecsTransfer;
                 }
                 ActiveMode = Modes.DEFAULT;
+                //Refresh Transferts Calcul
+                string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
+                TransferDAL.Action(RegistrationDAL.Load(FilterBankAccount), TransferDAL.Load(Where: FilterBankAccount));
+                //Load Anticipated
+                TransferDAL.Action(RegistrationDAL.Load(FilterBankAccount), TransferDAL.Load(Where: FilterBankAccount), true);
             }
             else
                 await DialogService.ShowMessage2(DialogService.TitleTextErrorValidation, DialogService.TextErrorValidation, MessageDialogStyle.Affirmative);
@@ -84,7 +90,8 @@ namespace EstimatedBudget.ViewModels.Transfers
             {
                 TransferDAL.Delete(SpecsTransfer);
                 ActiveMode = Modes.DEFAULT;
-                Transfers = new ObservableCollection<Transfer>(TransferDAL.Load());
+                string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
+                Transfers = new ObservableCollection<Transfer>(TransferDAL.Load(Where: FilterBankAccount));
             }
         }
 
@@ -120,6 +127,8 @@ namespace EstimatedBudget.ViewModels.Transfers
                     {
                         this.B_CodeBeneficiary = _SpecsTransfer.B_CodeBeneficiary;
                         RdoCodeBeneficiary = true;
+                        var Account = BankAccounts.Where(b => b.Code.ToString() == _SpecsTransfer.B_CodeBeneficiary.ToString()).SingleOrDefault();
+                        SelectedBankAccount = Account;
                     }
                     else
                     {
@@ -135,9 +144,11 @@ namespace EstimatedBudget.ViewModels.Transfers
                         this.C_Id = SelectedCategory.Id;
                         this.F_Code = SelectedFrequency.Code;
                     }
-                    
-                    if (ActiveMode != Modes.ADD)
+
+                    if (value.Id != 0)
                         ActiveMode = Modes.MODIFICATION;
+                    else
+                        ActiveMode = Modes.ADD;
                 }
             }
         }

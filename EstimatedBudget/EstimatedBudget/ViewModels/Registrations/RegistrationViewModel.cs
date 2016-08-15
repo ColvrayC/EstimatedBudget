@@ -18,9 +18,10 @@ namespace EstimatedBudget.ViewModels.Registrations
     public partial class RegistrationViewModel : ViewModelBase, IDataErrorInfo
     {
         List<Category> LstCategories;
+        string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
         public RegistrationViewModel()
         {
-            string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
+            
 
             //Initialisation
             SelectedIndex = -1;
@@ -83,11 +84,14 @@ namespace EstimatedBudget.ViewModels.Registrations
             {
                 RegistrationDAL.Delete(SpecsRegistration);
                 ActiveMode = Modes.DEFAULT;
-                Registrations = new ObservableCollection<Registration>(RegistrationDAL.Load());
+                Registrations = new ObservableCollection<Registration>(RegistrationDAL.Load(FilterBankAccount));
             }
         }
         public void Search()
         {
+            if(ActiveMode == Modes.ADD || ActiveMode == Modes.MODIFICATION)
+            SearchSelectedMonth = DateR.ToString("MM");
+
             var Month = SearchSelectedMonth;
             string CategoryCode;
 
@@ -136,6 +140,7 @@ namespace EstimatedBudget.ViewModels.Registrations
                     this.Wording = _SpecsRegistration.Wording;
                     this.Description = _SpecsRegistration.Description;
                     this.DateR = _SpecsRegistration.DateR;
+                    this.Way = _SpecsRegistration.Way;
                     this.Price = _SpecsRegistration.Price;
                     this.SelectedCategory = _SpecsRegistration.Category;
                     this.B_Code = Global.BankAccountCode;

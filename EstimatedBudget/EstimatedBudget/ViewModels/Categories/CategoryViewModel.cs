@@ -15,9 +15,10 @@ namespace EstimatedBudget.ViewModels.Categories
 {
     public partial class CategoryViewModel : ViewModelBase, IDataErrorInfo
     {
+        string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
         public CategoryViewModel()
         {
-            string FilterBankAccount = "where B_Code=" + Global.BankAccountCode;
+            
 
             //Initialisation
             SelectedIndex = -1;
@@ -71,7 +72,7 @@ namespace EstimatedBudget.ViewModels.Categories
             {
                 CategoryDAL.Delete(SpecsCategory);
                 ActiveMode = Modes.DEFAULT;
-                Categories = new ObservableCollection<Category>(CategoryDAL.Load());
+                Categories = new ObservableCollection<Category>(CategoryDAL.Load(FilterBankAccount));
             }
         }
 

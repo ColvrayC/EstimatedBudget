@@ -34,12 +34,13 @@ namespace EstimatedBudget.POCO.DAL
                 DBNull NullValue = DBNull.Value;
 
               //  myCnn.Insert<Registration>(R);
-                myCnn.Execute("INSERT INTO Registration (Wording, Description,DateR,Price,B_Code,C_Id,T_Id) VALUES(@Wording, @Description,@DateR,@Price,@B_Code,@C_Id,@T_Id)", new
+                myCnn.Execute("INSERT INTO Registration (Wording, Description,DateR,Way,Price,B_Code,C_Id,T_Id) VALUES(@Wording, @Description,@DateR,@Way,@Price,@B_Code,@C_Id,@T_Id)", new
                 {
                     R.Wording,
                     R.Description,
                     R.DateR,
                     R.Price,
+                    R.Way,
                     R.B_Code,
                     R.C_Id,
                     R.T_Id

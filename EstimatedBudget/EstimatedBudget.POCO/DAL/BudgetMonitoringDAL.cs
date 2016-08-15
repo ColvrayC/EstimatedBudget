@@ -12,7 +12,7 @@ namespace EstimatedBudget.POCO.DAL
     {
         public static ConnectionProvider Cnn = new ConnectionProvider();
 
-        public static List<BusinessBudgetMonitoring> Load(string Where,DateTime Date)
+        public static List<BusinessBudgetMonitoring> Load(string Where,DateTime Date,bool Anticipated = false)
         {
             var DataList = new List<BusinessBudgetMonitoring>(); ;
             using (var myCnn = Cnn.GetOpenConnection())
@@ -24,7 +24,14 @@ namespace EstimatedBudget.POCO.DAL
                 //Registration Filter By Month, BankAccount
                 var Registrations = RegistrationDAL.Load(Where + " AND strftime('%m', DateR) ='" + Month + "'");
 
-                foreach(var C in Categories)
+                if (Anticipated)
+                {
+                    //Add Virtual Registration
+                    foreach (var R in TransferDAL.AnticipatedRegistrationsOfTransfers)
+                        Registrations.Add(R);
+                }
+
+                foreach (var C in Categories)
                 {
                     //Sum of All Registrations for Current Category
                     var RegistrationsPrice = Registrations.Where(r => r.C_Id == C.Id).ToList().Sum(s=>s.Price);

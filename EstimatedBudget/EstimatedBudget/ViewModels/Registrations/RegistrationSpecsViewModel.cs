@@ -37,6 +37,9 @@ namespace EstimatedBudget.ViewModels.Registrations
         public virtual decimal Price { get; set; }
 
 
+        [RaisePropertyChanged]
+        public virtual bool Way { get; set; }
+
         [Required(ErrorMessage = ErrorsMessages.Required)]
         [RaisePropertyChanged]
         public virtual Nullable<int> C_Id { get; set; }
@@ -78,6 +81,8 @@ namespace EstimatedBudget.ViewModels.Registrations
             {
                 if ((decimal)propertyValue == (decimal)0.00M)
                     return ErrorsMessages.Required;
+                if ((decimal)propertyValue < (decimal)0.00M)
+                    return ErrorsMessages.NumericNegative;
             }
 
             var validationContext = new ValidationContext(this, null, null);
@@ -114,6 +119,7 @@ namespace EstimatedBudget.ViewModels.Registrations
                 Wording = this.Wording,
                 Description = this.Description,
                 DateR = this.DateR,
+                Way = this.Way,
                 Price = this.Price,
                 B_Code = Global.BankAccountCode,
                 C_Id = this.SelectedCategory.Id,

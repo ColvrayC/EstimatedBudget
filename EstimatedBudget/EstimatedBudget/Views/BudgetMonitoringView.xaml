@@ -60,18 +60,28 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <!-- Title -->
                     <TextBlock UseLayoutRounding="True" Text="SUIVI BUDGETS" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" FontSize="32" Margin="0,0,0,10"/>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Background="White" Height="22" Width="Auto" Margin="0,0,0,30">
+                    <Grid  Grid.Row="1" HorizontalAlignment="Center" Background="White" Height="22"  Margin="0,0,0,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="175"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="2" HorizontalAlignment="Center"/>
                         <Button Background="Transparent" Command="{Binding PreviousMonthCommand}">
-                            <Image Source="pack://application:,,,/Images/ArrowLeft.png" Height="12" Width="12"  HorizontalAlignment="Left" Cursor="Hand" Margin="0,0,20,0" />
+                            <Image Source="pack://application:,,,/Images/ArrowLeft.png" Height="15" Width="15"   Cursor="Hand" />
                         </Button>
-                        <TextBlock Text="{Binding DisplayDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center"/>
-                        <Button Background="Transparent" Command="{Binding NextMonthCommand}">
-                            <Image Source="pack://application:,,,/Images/ArrowRight.png" Height="12" Width="12" HorizontalAlignment="Right" Cursor="Hand" Margin="20,0,0,0"/>
+
+                        <Border Grid.Column="1" BorderBrush="{x:Null}" HorizontalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding DisplayDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </Border>
+                        <Button Grid.Column="2" Background="Transparent" Command="{Binding NextMonthCommand}">
+                            <Image Source="pack://application:,,,/Images/ArrowRight.png" Height="15" Width="15"  Cursor="Hand" />
                         </Button>
-                    </StackPanel>
+                    </Grid>
                   
 
                     <StackPanel Orientation="Horizontal"  Grid.Row="2" HorizontalAlignment="Center" Height="30" Width="190">
@@ -116,6 +126,8 @@
                         </DataGrid.CellStyle>
 
                     </DataGrid>
+                    <!-- Money Actual-->
+                    <TextBlock Grid.Row="5" Text="{Binding TotalMoney,UpdateSourceTrigger=PropertyChanged,StringFormat='Vous avez actuellement : {0} €'}" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Margin="0,0,0,10"/>
                 </Grid>
                
             </Grid>

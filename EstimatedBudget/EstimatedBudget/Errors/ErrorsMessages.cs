@@ -16,6 +16,7 @@ namespace EstimatedBudget.Errors
 
         //Decimal
         public const string Decimale = "Doit contenire une valeur numérique ou une valeur dans l'intervale.";
+        public const string NumericNegative = "Les valeurs négative ne sont pas autorisées.";
         public const string Euro = "La valeure doit contenir une valeure monnétaire.";
 
         //Requierd

@@ -183,6 +183,7 @@
     <Compile Include="Converters\DisplayLevyConverter.cs" />
     <Compile Include="Converters\EnabledAddModeConverter.cs" />
     <Compile Include="Converters\FrameConverter.cs" />
+    <Compile Include="Converters\MoneyToNegativeConverter.cs" />
     <Compile Include="Converters\SpecsVisibilityConverter.cs" />
     <Compile Include="Converters\SpecsWidthVisibilityConverter.cs" />
     <Compile Include="Converters\VisiblityToCheckedConverter.cs" />
@@ -222,6 +223,9 @@
     </Compile>
     <Compile Include="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NeutralView.xaml.cs">
+      <DependentUpon>NeutralView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
@@ -333,6 +337,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NeutralView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

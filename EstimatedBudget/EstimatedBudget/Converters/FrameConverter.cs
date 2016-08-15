@@ -12,12 +12,15 @@ namespace EstimatedBudget.Converters
         const string Category = "CategoryView.xaml";
         const string Transfer = "TransferView.xaml";
         const string Registration = "RegistrationView.xaml";
-
+        const string Neutral = "NeutralView.xaml";
 
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string Result = "";
+            if (value == null)
+                value = Neutral;
+
             switch (value.ToString())
             {
                 case BudgetMonitoring:
@@ -39,6 +42,10 @@ namespace EstimatedBudget.Converters
                 case Registration:
                     Result = Registration;
                     NameFrame.Name = NameFrame.Registration;
+                    break;
+                case Neutral:
+                    Result = Neutral;
+                    NameFrame.Name = string.Empty; ;
                     break;
             }
             return Result;
