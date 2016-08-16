@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using System.Data.SQLite;
+
 
 namespace EstimatedBudget.POCO
 {
@@ -64,26 +64,27 @@ namespace EstimatedBudget.POCO
                         FOREIGN KEY(C_Id) REFERENCES Category(Id)  ON DELETE CASCADE,
                         FOREIGN KEY(T_Id) REFERENCES Transfer(Id) ON DELETE CASCADE
                     );
-                  
-                    INSERT INTO Category(Wording,Targetprice,B_Code) VALUES('Nourriture',400.00,184645511);
-                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('Téléphones', 20.00,184645511); 
-                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('Internet', 40.00,1848451); 
-                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('EDF', 70.00,1848451);
-
-                    INSERT INTO BankAccount(Code,Wording,Description,Investment) VALUES(184645511,'CCP','Melanie', 1);
-                    INSERT INTO BankAccount(Code,Wording,Description,Investment) VALUES(1848451,'Livret A','Camille', 0);
-
-                    INSERT INTO Frequency(Code,Wording) VALUES('IMM','Immédiat');
-                    INSERT INTO Frequency(Code,Wording) VALUES('MENS','Mensuels');
-                    INSERT INTO Frequency(Code,Wording) VALUES('TRI','Trimestriel');
-                    INSERT INTO Frequency(Code,Wording) VALUES('SEME','Semestriel');
-                    INSERT INTO Frequency(Code,Wording) VALUES('ANN','Annuel');
-
-                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('CANAL+','','2016-08-12','IMM',3,184645511,30.00,0,1848451,'');
-                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('EDF','','2016-05-25','MENS',2,184645511,20.00,0,1848451,'');
-                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('APL','','2016-08-12','IMM',3,1848451,15.00,1,0,'testautre');
-                 
+                       INSERT INTO BankAccount(Code,Wording,Description,Investment) VALUES(999999,'Premiere Connexion','Premiere Connexion', 0);       
 "
+                /*
+                  INSERT INTO Category(Wording,Targetprice,B_Code) VALUES('Nourriture',400.00,184645511);
+                                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('Téléphones', 20.00,184645511); 
+                                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('Internet', 40.00,1848451); 
+                                    INSERT INTO Category(Wording, Targetprice,B_Code) VALUES('EDF', 70.00,1848451);
+
+                                    INSERT INTO BankAccount(Code,Wording,Description,Investment) VALUES(184645511,'CCP','Melanie', 1);
+                                    INSERT INTO BankAccount(Code,Wording,Description,Investment) VALUES(1848451,'Livret A','Camille', 0);
+
+                                    INSERT INTO Frequency(Code,Wording) VALUES('IMM','Immédiat');
+                                    INSERT INTO Frequency(Code,Wording) VALUES('MENS','Mensuels');
+                                    INSERT INTO Frequency(Code,Wording) VALUES('TRI','Trimestriel');
+                                    INSERT INTO Frequency(Code,Wording) VALUES('SEME','Semestriel');
+                                    INSERT INTO Frequency(Code,Wording) VALUES('ANN','Annuel');
+
+                                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('CANAL+','','2016-08-12','IMM',3,184645511,30.00,0,1848451,'');
+                                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('EDF','','2016-05-25','MENS',2,184645511,20.00,0,1848451,'');
+                                    INSERT INTO Transfer(Wording,Description,DateL,F_Code,C_Id,B_Code,Price,Way,B_CodeBeneficiary,Beneficiary) VALUES('APL','','2016-08-12','IMM',3,1848451,15.00,1,0,'testautre');
+                 * */
                 );
             }
         }

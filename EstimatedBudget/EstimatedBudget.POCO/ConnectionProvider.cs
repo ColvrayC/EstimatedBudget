@@ -2,6 +2,9 @@
 using System.Configuration;
 using System.Windows.Forms;
 using System.IO;
+using System;
+
+using System.Data.SQLite;
 
 namespace EstimatedBudget.POCO
 {
@@ -16,7 +19,9 @@ namespace EstimatedBudget.POCO
         public ConnectionProvider()
         {
             this.connectionString = ConfigurationManager.ConnectionStrings["myDataBase"].ConnectionString.ToString();
-            factory = DbProviderFactories.GetFactory(ConfigurationManager.ConnectionStrings["myDataBase"].ProviderName.ToString());
+            //factory = DbProviderFactories.GetFactory(ConfigurationManager.ConnectionStrings["myDataBase"].ProviderName.ToString());
+            factory = new SQLiteFactory();
+      
         }
 
         //constructeur 2 ou on lui indique les paramètres de connexion et provider
@@ -39,6 +44,10 @@ namespace EstimatedBudget.POCO
             catch (System.Data.SqlClient.SqlException)
             {
                 MessageBox.Show("La connection à la base de données a été perdu.", "Connection Perdu.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Une erreur d'ouverture à la base de données a été détéctée.");
             }
             return conn;
         }

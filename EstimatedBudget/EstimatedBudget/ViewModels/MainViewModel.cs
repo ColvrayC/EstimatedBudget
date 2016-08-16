@@ -27,19 +27,24 @@ namespace EstimatedBudget.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            
+          //  DriverSqlite.InstallSqLiteDriver();
+            //Chek if odbc pilote is Installed
+           // if (DriverSqlite.Installed()) { }
+
             //Check IF Databse Exist
             var PathDatabase = new ConnectionProvider().GetOpenConnection().ConnectionString.Substring(12);
             if (File.Exists(PathDatabase))
             {
-                if(new FileInfo(PathDatabase).Length == 0)
+                if (new FileInfo(PathDatabase).Length == 0)
                     DataBaseManager.CreateDatabase();
             }
             else
+            {
                 return;
+            }
 
-          //  PathCurrentFrame = "NeutralView.xaml";
-            NavigationName = NameFrame.BankAccount;
+            PathCurrentFrame = "NeutralView.xaml";
+            //NavigationName = NameFrame.BankAccount;
             BankAccounts = new ObservableCollection<BankAccount>(BankAccountDAL.Load());
             OpenFlyOutBankAccountCommand = new RelayCommand(ShowFlyOutBankAccount);
             SelectedFrameCommand = new RelayCommand<string>(SelectedFrame);
